@@ -1,15 +1,18 @@
 </main>
 </div>
-<footer class="site-footer py-5 bg-light text-dark" role="complementary">
+<footer class="mt-5 site-footer py-5 bg-light text-dark" role="complementary">
     <div class="container">
-        <div class="row">
+        <div class="row d-flex align-items-center gap-5 gap-md-0">
             <div class="col-md-4">
                 <h1 class="text-dark fs-2"><?php bloginfo('name') ?></h1>
                 <p class="text-secondary fs-5"><?php bloginfo('description') ?></p>
             </div>
             <div class="col-md-4">
                 <h1 class="fs-2">Kategori</h1>
-                <?php $categories = get_categories() ?>
+                <?php $categories = get_categories(array(
+                    'number' => 0,
+                    'hide_empty' => false
+                )); ?>
                 <?php if (!empty($categories)) : ?>
                     <div class="row w-100 d-flex flex-row flex-wrap">
                         <?php foreach ($categories as $category) : ?>
@@ -39,23 +42,26 @@
 <?php wp_footer(); ?>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
-        var swiper = new Swiper('.swiper-container', {
+        let headlineSwiper = new Swiper('.swiper-container', {
             loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
             autoplay: {
                 delay: 5000,
             },
+            slidesPerView: 1,
+            spaceBetween: 30,
+            effect: 'slide'
+        });
+
+        let latestNewsSwiper = new Swiper('.latest-swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 3000
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+            effect: 'slide'
         });
     });
-
-
 
     const dropdownMenus = document.querySelectorAll('.menu-item-has-children')
     const dropdownItems = document.querySelectorAll('.menu-item-has-children .sub-menu');

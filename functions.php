@@ -272,9 +272,86 @@ function capitalizeSecondWord($string){
     return $string;
 }
 
+function read_too_shortcode($atts){
+    $args = array(
+        'name' => $atts["post_slug"],
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'post_status' => 'publish',
+    );
+
+    $post_query = new WP_Query($args);
+
+    $post_title = null;
+    $post_link = null;
+
+    while($post_query->have_posts()){
+        $post_query->the_post();
+
+        $post_title = get_the_title();
+        $post_link = get_the_permalink();
+
+        wp_reset_postdata();
+    }
+
+    return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
+}
+
+
+add_shortcode('read_too', 'read_too_shortcode');
 add_filter('excerpt_length', 'set_excerpt_length');
 add_action( 'widgets_init', 'custom_footer_widgets' );
 
 
 
 add_filter('show_admin_bar', '__return_false');
+
+function mytheme_customize_register($wp_customize) {
+    // Menambahkan Seksi
+    $wp_customize->add_section('mytheme_custom_section', array(
+        'title'    => __('Base Theme Settings', 'mytheme'),
+        'priority' => 30,
+    ));
+
+    // Menambahkan Pengaturan
+    $wp_customize->add_setting('mytheme_custom_setting', array(
+        'default'   => 'Jokowi Ganteng',
+        'transport' => 'refresh', // Atau 'postMessage' jika Anda ingin menggunakan teknik AJAX untuk pratinjau langsung
+    ));
+
+    // Menambahkan Kontrol
+    $wp_customize->add_control('mytheme_custom_control', array(
+        'label'    => __('Jokowi Headline', 'mytheme'),
+        'section'  => 'mytheme_custom_section',
+        'settings' => 'mytheme_custom_setting',
+        'type'     => 'text', // Jenis kontrol (text, checkbox, radio, etc.)
+    ));
+
+    $wp_customize->add_setting('mytheme_custom_color', array(
+        'default'   => '#ffffff',
+        'transport' => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'mytheme_custom_color_control', array(
+        'label'    => __('Background Color', 'mytheme'),
+        'section'  => 'mytheme_custom_section',
+        'settings' => 'mytheme_custom_color',
+    )));
+
+    $wp_customize->add_setting('mytheme_custom_image', array(
+        'default'   => '',
+        'transport' => 'refresh',
+    ));
+    
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mytheme_custom_image_control', array(
+        'label'    => __('Header Image', 'mytheme'),
+        'section'  => 'mytheme_custom_section',
+        'settings' => 'mytheme_custom_image',
+    )));
+    
+    
+}
+add_action('customize_register', 'mytheme_customize_register');
+
+
+?>

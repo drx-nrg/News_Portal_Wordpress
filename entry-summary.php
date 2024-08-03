@@ -5,12 +5,14 @@
         </a>
     <?php endif; ?>
     <div class="col-md-8 mt-3 mt-md-0">
-        <div class="mb-2">
+        <div class="mb-2 d-flex flex-row gap-3">
             <?php
             $categories = get_the_category();
             if (!empty($categories)) {
                 foreach ($categories as $category) {
-                    echo '<span class="text-white bg-success fw-semibold" style="padding: 5px 20px 5px 15px; clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);">' . esc_html($category->name) . '</span>';
+                    if($category->slug != 'headline'){
+                        echo '<span class="text-white bg-success fw-semibold" style="padding: 5px 20px 5px 15px; clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);">' . esc_html($category->name) . '</span>';
+                    }
                 }
             }
             ?>

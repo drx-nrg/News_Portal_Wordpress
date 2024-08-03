@@ -86,8 +86,12 @@
         gap: 1.6rem;
         list-style: none !important;
         font-family: 'Poppins' sans-serif;
+        padding: 0;
     }
-
+    #sidebar{
+        position: sticky;
+        top: 0;
+    }
     #sidebar .widget-container {
         padding: 20px;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 4px 0px;
@@ -272,6 +276,7 @@
         opacity: 1 !important;
         margin: 0 !important;
         border: none;
+        margin-top: -5px;
         margin-bottom: 10px !important;
     }
 
@@ -379,6 +384,31 @@
     .post-content a{
         text-decoration: none;
     }
+    .latest-swiper-container .swiper-slide{
+        height: 200px !important;
+    }
+    .top-bar{
+        position: fixed;
+    }
+    .wp-block-tag-cloud{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .tag-cloud-link{
+        display: block;
+        max-width: fit-content;
+        padding: 10px;
+        background-color: #198754 !important;
+        border-radius: 4px;
+        font-weight: lighter;
+        color: white !important;
+        opacity: 1;
+        text-decoration: none;
+        margin: 0;
+    }
+    .tag-cloud-link::before{
+        content: "#";
+    }
 </style>
 
 <body <?php body_class(); ?>>
@@ -428,11 +458,8 @@
         </div>
         <div id="container">
             <main id="content" role="main">
-
-
                 <header class="mb-5 relative">
                     <div class="container-fluid py-3" id="header-logo-search">
-                        <!-- Logo Website -->
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6 text-left">
                                 <a href="<?php echo home_url(); ?>" class="text-decoration-none text-dark">

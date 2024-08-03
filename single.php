@@ -66,6 +66,14 @@
                 endwhile;
             endif;
             ?>
+            <div class="share-section w-100 mt-3">
+                <h1 class="fw-semibold fs-4 mb-3">Bagikan:</h1>
+                <div class="social-buttons mb-3 d-flex w-100 justify-content-start">
+                    <a href="#" class="btn py-2 me-2 rounded-pill bg-danger"><i class="bi bi-instagram text-white"></i></a>
+                    <a href="#" class="btn py-2 me-2 rounded-pill bg-success"><i class="bi bi-whatsapp text-white"></i></a>
+                    <a href="#" class="btn py-2 me-2 rounded-pill bg-primary"><i class="bi bi-facebook text-white"></i></a>
+                </div>
+            </div>
             <div class="content-tags d-flex flex-wrap gap-2 align-items-center mt-5 mb-5">
                 <p class="fs-4 fw-semibold text-dark mb-0">Tags :</p>
                 <?php
@@ -73,7 +81,7 @@
                 if ($tags) {
                     echo '<div class="post-tags d-flex flex-wrap gap-3">';
                     foreach ($tags as $tag) {
-                        echo '<span class="badge bg-light py-2 px-4 d-block rounded-0 text-secondary fs-5 fw-normal">' . strtoupper(esc_html($tag->name)) . '</span> ';
+                        echo '<a href="' . get_tag_link($tag) . '" class="badge bg-light py-2 px-4 d-block rounded-0 text-secondary fs-5 fw-normal text-decoration-none">' . strtoupper(esc_html($tag->name)) . '</a> ';
                     }
                     echo '</div>';
                 } else {
