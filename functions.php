@@ -225,6 +225,44 @@ function custom_footer_widgets() {
         'after_title'   => '</h2>',
     ) );
 }
+
+function widget_iklan(){
+    register_sidebar(array(
+        'name' => __("Iklan Samping Kanan", 'textdomain'),
+        'id' => 'right-side-ads-widget',
+        'before_widget' => '<div class="ads-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="ads-widget-title">',
+        'after_title'   => '</h2>',
+    ));
+    register_sidebar(array(
+        'name' => __("Iklan Samping Kiri", 'textdomain'),
+        'id' => 'left-side-ads-widget',
+        'before_widget' => '<div class="ads-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="ads-widget-title">',
+        'after_title'   => '</h2>',
+    ));
+    register_sidebar(array(
+        'name' => __("Iklan Atas", 'textdomain'),
+        'id' => 'top-ads-widget',
+        'before_widget' => '<div class="w-100 border border-dark ads-widget p-0">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="ads-widget-title">',
+        'after_title'   => '</h2>',
+    ));
+    register_sidebar(array(
+        'name' => __("Iklan Bawah", 'textdomain'),
+        'id' => 'bottom-ads-widget',
+        'before_widget' => '<div class="ads-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="ads-widget-title">',
+        'after_title'   => '</h2>',
+    ));
+}
+
+add_action('widgets_init', 'widget_iklan');
+
 function set_excerpt_length(){
     return 10;
 }
@@ -245,19 +283,19 @@ function diffForHumans($timestamp) {
 
     $string = '';
     if ($diff->y) {
-        $string = $diff->y . ' year' . ($diff->y > 1 ? 's' : '') . ' ago';
+        $string = $diff->y . ' tahun' . ($diff->y > 1 ? 's' : '') . ' lalu';
     } elseif ($diff->m) {
-        $string = $diff->m . ' month' . ($diff->m > 1 ? 's' : '') . ' ago';
+        $string = $diff->m . ' bulan' . ' lalu';
     } elseif ($diff->d) {
-        $string = $diff->d . ' day' . ($diff->d > 1 ? 's' : '') . ' ago';
+        $string = $diff->d . ' hari' . ' lalu';
     } elseif ($diff->h) {
-        $string = $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
+        $string = $diff->h . ' jam' . ' lalu';
     } elseif ($diff->i) {
-        $string = $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
+        $string = $diff->i . ' menit' . ' lalu';
     } elseif ($diff->s) {
-        $string = $diff->s . ' second' . ($diff->s > 1 ? 's' : '') . ' ago';
+        $string = $diff->s . ' detik' . ' lalu';
     } else {
-        $string = 'just now';
+        $string = 'sekarang';
     }
 
     return $string;
@@ -295,6 +333,22 @@ function read_too_shortcode($atts){
     }
 
     return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
+}
+
+function limit_words($string, $limit){
+    $string = explode(" ", $string);
+
+    if(count($string) < $limit){
+        return $string;
+    }
+
+    $new_string = [];
+
+    for($i = 0; $i < $limit; $i++){
+        $new_string[] = $string[$i];
+    }
+
+    return implode(" ", $new_string)."...";
 }
 
 
@@ -353,5 +407,14 @@ function mytheme_customize_register($wp_customize) {
 }
 add_action('customize_register', 'mytheme_customize_register');
 
+function calculate_reading_time($post) {
+    $content = get_post_field('post_content', $post);
+    $word_count = str_word_count(strip_tags($content));
+    
+    $words_per_minute = 200;
+    $reading_time = ceil($word_count / $words_per_minute);
+    
+    return $reading_time;
+}
 
 ?>

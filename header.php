@@ -105,7 +105,6 @@
         font-weight: 700;
         display: block;
         margin-bottom: 10px;
-        opacity: 0.7;
     }
 
     #sidebar .widget-container li {
@@ -144,7 +143,6 @@
         object-fit: cover;
         transition: .5s ease all;
         margin-bottom: 0 !important;
-        border-radius: 15px;
     }
 
     .site-footer {
@@ -223,7 +221,7 @@
     }
 
     .card {
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         overflow: hidden;
         padding-bottom: 0 !important;
     }
@@ -251,7 +249,7 @@
 
     .card-title {
         font-size: 1.25rem;
-        font-weight: bold;
+        font-weight: 600;
     }
 
     .card-text {
@@ -395,19 +393,21 @@
         flex-wrap: wrap;
     }
     .tag-cloud-link{
-        display: block;
+        display: block !important;
         max-width: fit-content;
         padding: 10px;
-        background-color: #198754 !important;
         border-radius: 4px;
-        font-weight: lighter;
+        font-weight: 500 !important;
         color: white !important;
         opacity: 1;
         text-decoration: none;
         margin: 0;
+        color: black !important;
+        font-size: 16px !important;
     }
     .tag-cloud-link::before{
         content: "#";
+        color: #1b995e;
     }
 </style>
 
@@ -437,8 +437,8 @@
                 <div id="search"><?php get_search_form(); ?></div>
             </nav>
         </header> -->
-        <div id="container" class="navigation-top bg-white shadow-sm mb-2">
-            <div class="container-fluid d-flex justify-content-between align-items-center py-3 fw-bold fs-5">
+        <div class="container-fluid navigation-top bg-white shadow-sm mb-2">
+            <div class="container d-flex justify-content-between align-items-center py-3 fw-bold fs-5">
                 <p class="date mb-0">
                     <?php
                     $formatted_date = date('l, j F Y');
@@ -456,9 +456,9 @@
                 </div>
             </div>
         </div>
-        <div id="container">
+        <div class="container">
             <main id="content" role="main">
-                <header class="mb-5 relative">
+                <header class="mb-3 relative">
                     <div class="container-fluid py-3" id="header-logo-search">
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6 text-left">
@@ -483,7 +483,7 @@
                         }
                     </script>
 
-                    <nav class="navbar navbar-expand-md bg-success rounded-3 p-3" st>
+                    <nav class="navbar navbar-expand-md bg-success rounded-3 p-3 mb-5">
                         <div class="container-fluid">
                             <div class="navbar-container p-0" id="main-menu">
                                 <?php
@@ -498,4 +498,8 @@
                             </div>
                         </div>
                     </nav>
+
+                    <?php if(is_active_sidebar('top-ads-widget')): ?>
+                        <?php dynamic_sidebar('top-ads-widget') ?>
+                    <?php endif; ?>
                 </header>

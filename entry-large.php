@@ -1,8 +1,8 @@
-<a href="<?php the_permalink() ?>" class="swiper-slide mb-4">
+<a href="<?php the_permalink() ?>" class="col-md-6 mb-4">
     <div class="card h-100 overflow-hidden">
         <?php if (has_post_thumbnail()) : ?>
             <div class="card-img-top h-100 position-relative overflow-hidden">
-                <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 object-cover mb-0 rounded-3')); ?>
+                <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 object-cover mb-0')); ?>
                 <div class="card-img-overlay position-absolute d-flex flex-column justify-content-end align-items-start p-4 bottom-0">
                     <div class="mb-2">
                         <?php

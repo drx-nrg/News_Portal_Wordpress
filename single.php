@@ -5,7 +5,7 @@
             <?php
             if (have_posts()) :
                 while (have_posts()) : the_post(); ?>
-                    <p class="fs-5 text-secondary"><a href="<?= home_url() ?>" class="text-decoration-none text-secondary">Beranda</a> <i class="bi bi-chevron-right fs-6"></i> <a href="<?= get_category_link(get_the_category()[0]) ?>" class="text-decoration-none text-secondary"><?= get_the_category()[0]->name ?></a> <i class="bi bi-chevron-right fs-6"></i> <?php the_title() ?></p>
+                    <p class="fs-5 text-secondary"><a href="<?= home_url() ?>" class="text-decoration-none text-secondary">Beranda</a> <i class="bi bi-chevron-double-right fs-6"></i> <a href="<?= get_category_link(get_the_category()[0]) ?>" class="text-decoration-none text-secondary"><?= get_the_category()[0]->name ?></a> <i class="bi bi-chevron-double-right fs-6"></i> <?php the_title() ?></p>
                     <div class="post-categories mt-3 mb-3 d-flex justify-content-center gap-3">
                         <?php
                         $categories = get_the_category();
@@ -21,13 +21,17 @@
                         <a href="#" class="btn py-2 me-2 rounded-pill bg-success"><i class="bi bi-whatsapp text-white"></i></a>
                         <a href="#" class="btn py-2 me-2 rounded-pill bg-primary"><i class="bi bi-facebook text-white"></i></a>
                     </div>
-                    <div class="d-flex w-100 fs-5 text-secondary justify-content-center gap-2">
-                        <div class="post-author mb-3">
+                    <div class="d-flex flex-wrap w-100 fs-5 text-secondary justify-content-center gap-2">
+                        <div class="post-author p-0">
                             <i class="bi bi-person me-2"></i> Oleh <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" class="text-decoration-none"><?php the_author(); ?></a>
                         </div>
                         <p>-</p>
-                        <div class="post-date mb-3">
+                        <div class="post-date p-0">
                             <i class="bi bi-calendar me-2"></i> <?php echo date_i18n('l, d M Y H:i', strtotime(get_the_date('c'))); ?>
+                        </div>
+                        <div class="w-100 reading-time text-center mt-n2 mb-3">
+                            <i class="bi bi-clock"></i>
+                            <?= calculate_reading_time(get_post())." menit membaca" ?>
                         </div>
                     </div>
                     <div class="post-thumbnail mb-3 overflow-hidden rounded-3 d-flex flex-column align-items-center">
