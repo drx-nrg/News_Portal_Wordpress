@@ -5,7 +5,7 @@
             <?php
             if (have_posts()) :
                 while (have_posts()) : the_post(); ?>
-                    <p class="fs-5 text-secondary"><a href="<?= home_url() ?>" class="text-decoration-none text-secondary">Beranda</a> <i class="bi bi-chevron-double-right fs-6"></i> <a href="<?= get_category_link(get_the_category()[0]) ?>" class="text-decoration-none text-secondary"><?= get_the_category()[0]->name ?></a> <i class="bi bi-chevron-double-right fs-6"></i> <?php the_title() ?></p>
+                    <?php get_template_part('breadcrumbs', null, array('type' => 'post', 'category' => get_the_category()[0], 'title' => get_the_title())) ?>
                     <div class="post-categories mt-3 mb-3 d-flex justify-content-center gap-3">
                         <?php
                         $categories = get_the_category();
@@ -16,7 +16,7 @@
                     </div>
                     <h1 class="post-title fw-bolder text-center mb-3"><?php the_title(); ?></h1>
                     <p class="text-uppercase fw-bold fs-5 text-center text-secondary">Bagikan</p>
-                    <div class="social-buttons mb-3 d-flex w-100 justify-content-center">
+                    <div class="social-buttons mb-4 d-flex w-100 justify-content-center">
                         <a href="#" class="btn py-2 me-2 rounded-pill bg-danger"><i class="bi bi-instagram text-white"></i></a>
                         <a href="#" class="btn py-2 me-2 rounded-pill bg-success"><i class="bi bi-whatsapp text-white"></i></a>
                         <a href="#" class="btn py-2 me-2 rounded-pill bg-primary"><i class="bi bi-facebook text-white"></i></a>
@@ -29,7 +29,7 @@
                         <div class="post-date p-0">
                             <i class="bi bi-calendar me-2"></i> <?php echo date_i18n('l, d M Y H:i', strtotime(get_the_date('c'))); ?>
                         </div>
-                        <div class="w-100 reading-time text-center mt-n2 mb-3">
+                        <div class="w-100 reading-time text-center mb-3" style="margin-top: -10px;">
                             <i class="bi bi-clock"></i>
                             <?= calculate_reading_time(get_post())." menit membaca" ?>
                         </div>
@@ -39,7 +39,12 @@
                         if (has_post_thumbnail()) :
                             the_post_thumbnail('large');
                             $thumb_id = get_post_thumbnail_id();
-                            $thumb_description = get_post($thumb_id)->post_content; // Mengambil deskripsi gambar
+                            $thumb_description = null;
+
+                            if(get_post($thumb_id)){
+                                $thumb_description = get_post($thumb_id)->post_content;
+                            }
+
                             if (!empty($thumb_description)) : ?>
                                 <p class="featured-image-description mt-2 text-center"><?php echo esc_html($thumb_description); ?></p>
                         <?php endif;
@@ -78,7 +83,7 @@
                     <a href="#" class="btn py-2 me-2 rounded-pill bg-primary"><i class="bi bi-facebook text-white"></i></a>
                 </div>
             </div>
-            <div class="content-tags d-flex flex-wrap gap-2 align-items-center mt-5 mb-5">
+            <div class="content-tags d-flex flex-wrap gap-2 align-items-center mt-5 mb-3 pb-3 border-bottom">
                 <p class="fs-4 fw-semibold text-dark mb-0">Tags :</p>
                 <?php
                 $tags = get_the_tags();
@@ -94,9 +99,15 @@
                 ?>
             </div>
             <nav id="nav-below-single" class="navigation post-navigation d-block mb-5" role="navigation">
-                <div class="nav-links d-flex justify-content-between">
-                    <div class="nav-previous text-decoration-none text-dark"><?php previous_post_link('%link', '&laquo; Previous Post'); ?></div>
-                    <div class="nav-next text-decoration-none text-dark"><?php next_post_link('%link', 'Next Post &raquo;'); ?></div>
+                <div class="row nav-links d-flex justify-content-between">
+                    <div class="col-md-6 nav-previous text-decoration-none text-dark">
+                        <?= get_previous_post_link('%link', 'Sebelumnya'); ?>
+                        <p class="fs-5 fw-semibold mt-2"><?= get_previous_post()->post_title ?></p>
+                    </div>
+                    <div class="col-md-6 nav-next text-decoration-none text-dark d-flex flex-column align-items-end">
+                        <?= get_next_post_link('%link', 'Selanjutnya'); ?>
+                        <p class="fs-5 fw-semibold mt-2 text-end"><?= get_next_post()->post_title ?></p>
+                    </div>
                 </div>
             </nav>
 
@@ -115,32 +126,7 @@
 
                 if ($related_articles->have_posts()) : while ($related_articles->have_posts()) : $related_articles->the_post()
                 ?>
-                        <article class="row w-100 d-flex align-items-center mb-4 text-decoration-none text-dark mb-3">
-                            <?php if (has_post_thumbnail()) : ?>
-                                <a href="<?php the_permalink() ?>" class="col-md-4 d-block post-thumbnail overflow-hidden rounded-3">
-                                    <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 object-cover mb-0')); ?>
-                                </a>
-                            <?php endif; ?>
-                            <div class="col-md-8 mt-3 mt-md-0">
-                                <div class="mb-2">
-                                    <?php
-                                    $categories = get_the_category();
-                                    if (!empty($categories)) {
-                                        foreach ($categories as $category) {
-                                            echo '<span class="text-white bg-success fw-semibold" style="padding: 5px 20px 5px 15px; clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);">' . esc_html($category->name) . '</span>';
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                                <h1 class="card-title mb-2 fs-3"> <a href="<?php the_permalink() ?>" class="post-title text-dark text-decoration-none"><?php the_title(); ?></a></h1>
-                                <div class="d-flex flex-wrap align-items-center mb-2 fs-5 text-secondary">
-                                    <i class="bi bi-person me-2"></i>
-                                    <span class="me-3">Oleh <a href="<?= get_author_posts_url(get_the_author_meta('ID')) ?>" class="text-decoration-none"><?php the_author(); ?></a></span>
-                                    <i class="bi bi-calendar me-2"></i>
-                                    <span class="me-3"><?php echo diffForHumans(strtotime(get_the_date('j F, Y'))) ?></span>
-                                </div>
-                            </div>
-                        </article>
+                        <?php  get_template_part('entry', 'summary') ?>
                 <?php endwhile;
                     wp_reset_postdata();
                 endif;  ?>

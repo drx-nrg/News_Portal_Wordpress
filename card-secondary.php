@@ -1,7 +1,7 @@
-<article class="col-md-12 d-flex align-items-center text-decoration-none text-dark border-bottom pb-2 <?= $args["mb"] ? "mb-4" : "" ?>">
+<article class="col-md-12 card-secondary d-flex align-items-center text-decoration-none text-dark border-bottom pb-2 <?= $args["mb"] ? "mb-4" : "" ?>" style="height: 120px;">
     <?php if (has_post_thumbnail()) : ?>
         <a href="<?php the_permalink() ?>" class="col-md-4 d-block post-thumbnail overflow-hidden rounded-1 border p-0" style="height: 100px;">
-            <?php the_post_thumbnail('thumbnail', array('class' => 'img-fluid w-100 object-cover mb-0')); ?>
+            <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 object-cover mb-0')); ?>
         </a>
     <?php endif; ?>
     <div class="col-md-8 mt-3 mt-md-0 px-4">

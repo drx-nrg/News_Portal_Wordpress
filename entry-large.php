@@ -1,4 +1,4 @@
-<a href="<?php the_permalink() ?>" class="col-md-6 mb-4">
+<a href="<?php the_permalink() ?>" class="col-md-6 p-1">
     <div class="card h-100 overflow-hidden">
         <?php if (has_post_thumbnail()) : ?>
             <div class="card-img-top h-100 position-relative overflow-hidden">

@@ -1,4 +1,8 @@
 <?php
+
+include __DIR__ . '/customizer/main.php';
+
+
 add_action('after_setup_theme', 'blankslate_setup');
 function blankslate_setup()
 {
@@ -13,7 +17,10 @@ function blankslate_setup()
     if (!isset($content_width)) {
         $content_width = 1920;
     }
-    register_nav_menus(array('main-menu' => esc_html__('Main Menu', 'blankslate')));
+    register_nav_menus(array(
+        'main-menu' => esc_html__('Main Menu', 'blankslate'),
+        'page-menu' => esc_html__('Page Menu Location', 'blankslate')
+    ));
 }
 add_action('admin_notices', 'blankslate_notice');
 function blankslate_notice()
@@ -34,7 +41,11 @@ function blankslate_notice_dismissed()
 add_action('wp_enqueue_scripts', 'blankslate_enqueue');
 function blankslate_enqueue()
 {
-    wp_enqueue_style('blankslate-style', get_template_directory_uri() . './css/bootstrap.min.css');
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . './css/bootstrap.min.css');
+    wp_enqueue_style('stylesheet', get_template_directory_uri() . './style.css');
+    wp_enqueue_style('bootstrap-icons', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css");
+    wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
+    wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
     wp_enqueue_script('jquery');
 }
 add_action('wp_footer', 'blankslate_footer');
@@ -264,7 +275,7 @@ function widget_iklan(){
 add_action('widgets_init', 'widget_iklan');
 
 function set_excerpt_length(){
-    return 10;
+    return 15;
 }
 
 function get_current_url(){
@@ -339,7 +350,7 @@ function limit_words($string, $limit){
     $string = explode(" ", $string);
 
     if(count($string) < $limit){
-        return $string;
+        return implode(" ", $string);
     }
 
     $new_string = [];
@@ -360,52 +371,53 @@ add_action( 'widgets_init', 'custom_footer_widgets' );
 
 add_filter('show_admin_bar', '__return_false');
 
-function mytheme_customize_register($wp_customize) {
+function blankslate_customize_register($wp_customize) {
     // Menambahkan Seksi
-    $wp_customize->add_section('mytheme_custom_section', array(
-        'title'    => __('Base Theme Settings', 'mytheme'),
+    $wp_customize->add_section('blankslate_custom_section', array(
+        'title'    => __('Base Theme Settings', 'blankslate'),
         'priority' => 30,
     ));
 
     // Menambahkan Pengaturan
-    $wp_customize->add_setting('mytheme_custom_setting', array(
+    $wp_customize->add_setting('blankslate_custom_setting', array(
         'default'   => 'Jokowi Ganteng',
         'transport' => 'refresh', // Atau 'postMessage' jika Anda ingin menggunakan teknik AJAX untuk pratinjau langsung
     ));
 
     // Menambahkan Kontrol
-    $wp_customize->add_control('mytheme_custom_control', array(
-        'label'    => __('Jokowi Headline', 'mytheme'),
-        'section'  => 'mytheme_custom_section',
-        'settings' => 'mytheme_custom_setting',
+    $wp_customize->add_control('blankslate_custom_control', array(
+        'label'    => __('Jokowi Headline', 'blankslate'),
+        'section'  => 'blankslate_custom_section',
+        'settings' => 'blankslate_custom_setting',
         'type'     => 'text', // Jenis kontrol (text, checkbox, radio, etc.)
     ));
 
-    $wp_customize->add_setting('mytheme_custom_color', array(
+    $wp_customize->add_setting('blankslate_custom_color', array(
         'default'   => '#ffffff',
         'transport' => 'refresh',
     ));
     
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'mytheme_custom_color_control', array(
-        'label'    => __('Background Color', 'mytheme'),
-        'section'  => 'mytheme_custom_section',
-        'settings' => 'mytheme_custom_color',
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'blankslate_custom_color_control', array(
+        'label'    => __('Background Color', 'blankslate'),
+        'section'  => 'blankslate_custom_section',
+        'settings' => 'blankslate_custom_color',
     )));
 
-    $wp_customize->add_setting('mytheme_custom_image', array(
+    $wp_customize->add_setting('blankslate_custom_image', array(
         'default'   => '',
         'transport' => 'refresh',
     ));
     
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mytheme_custom_image_control', array(
-        'label'    => __('Header Image', 'mytheme'),
-        'section'  => 'mytheme_custom_section',
-        'settings' => 'mytheme_custom_image',
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'blankslate_custom_image_control', array(
+        'label'    => __('Header Image', 'blankslate'),
+        'section'  => 'blankslate_custom_section',
+        'settings' => 'blankslate_custom_image',
     )));
     
     
 }
-add_action('customize_register', 'mytheme_customize_register');
+
+add_action('customize_register', 'blankslate_customize_register');
 
 function calculate_reading_time($post) {
     $content = get_post_field('post_content', $post);

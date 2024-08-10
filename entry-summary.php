@@ -1,4 +1,4 @@
-<article class="row w-100 d-flex align-items-center mb-4 text-decoration-none text-dark mb-3 p-2 border-bottom">
+<article class="row w-100 d-flex align-items-center mb-4 text-decoration-none text-dark mb-3 p-2 pb-3 border-bottom">
     <?php if (has_post_thumbnail()) : ?>
         <a href="<?php the_permalink() ?>" class="col-md-4 d-block post-thumbnail overflow-hidden rounded-3 border p-0" style="height: 200px;">
             <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 object-cover mb-0')); ?>
@@ -23,5 +23,6 @@
             <span class="me-2">-</span>
             <span class="me-2"><?php echo diffForHumans(strtotime(get_the_date('j F, Y'))) ?></span>
         </div>
+        <div class="text-secondary"><?php the_excerpt() ?></div>
     </div>
 </article>

@@ -5,6 +5,10 @@
                 <div class="row d-flex flex-row">
                     <article id="post-<?php the_ID(); ?>" class="col-md-8">
                         <header class="header text-center">
+                            <?php get_template_part('breadcrumbs', null, array(
+                                "type" => "page",
+                                "title" => get_the_title(),
+                            )) ?>
                             <h1 class="entry-title fw-bolder" itemprop="name"><?php the_title(); ?></h1>
                             <?php edit_post_link(); ?>
                         </header>

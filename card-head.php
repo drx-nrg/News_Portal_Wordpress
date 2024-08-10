@@ -1,4 +1,4 @@
-<div class="col-md-6 card mb-0 p-0 bg-white rounded-2 border-0 overflow-hidden">
+<div class="col-md-12 card mb-0 p-0 bg-white rounded-2 border-0 overflow-hidden">
     <div class="row w-100 border-bottom p-0">
         <div class="col-12 p-0 rounded-2 overflow-hidden" style="height: 300px;">
             <a href="<?php the_permalink() ?>">
@@ -11,9 +11,9 @@
 
                 foreach($categories as $category):
             ?>
-                <p class="text-success text-uppercase mb-1"><?= $category->name ?></p>
+                <p class="text-success text-uppercase mb-1 fw-semibold"><?= $category->name ?></p>
             <?php endforeach; ?>
-            <h1 class="card-title fs-4"><?= get_the_title() ?></h1>
+            <h1 class="card-title fs-4"><a href="<?php the_permalink() ?>" class="text-dark text-decoration-none"><?= get_the_title() ?></a></h1>
             <!-- <div class="post-author d-flex gap-2 text-secondary align-items-center">
                 <i class="bi bi-person"></i>
                 <p class="fs-6 mb-0">Oleh <a href="<? get_author_posts_url(get_the_author_meta('ID')) ?>" class="text-decoration-none"><?php the_author() ?></a></p>
