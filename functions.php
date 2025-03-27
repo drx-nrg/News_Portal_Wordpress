@@ -41,10 +41,11 @@ function blankslate_notice_dismissed()
 add_action('wp_enqueue_scripts', 'blankslate_enqueue');
 function blankslate_enqueue()
 {
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . './css/bootstrap.min.css');
-    wp_enqueue_style('stylesheet', get_template_directory_uri() . './style.css');
+    wp_enqueue_style('bootstrap-css', get_template_directory_uri() . './css/bootstrap.min.css');
+    wp_enqueue_style('stylesheet', get_stylesheet_uri());
     wp_enqueue_style('bootstrap-icons', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css");
     wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
+    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js');
     wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
     wp_enqueue_script('jquery');
 }
@@ -154,10 +155,10 @@ function blankslate_widgets_init()
     register_sidebar(array(
         'name' => esc_html__('Sidebar Widget Area', 'blankslate'),
         'id' => 'primary-widget-area',
-        'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+        'before_widget' => '<li id="%1$s" class="widget-container bg-white %2$s">',
         'after_widget' => '</li>',
-        'before_title' => '<h3 class="widget-title bg-success text-white fs-6 mb-0" style="clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); padding: 10px 25px 10px 15px; max-width: fit-content;">',
-        'after_title' => '</h3><hr class="green-line">',
+        'before_title' => '<h3 class="widget-title bg-orange fs-6 mb-3" style="clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); padding: 10px 25px 10px 15px; max-width: fit-content;">',
+        'after_title' => '</h3>',
     ));
 }
 add_action('wp_head', 'blankslate_pingback_header');
@@ -201,7 +202,7 @@ function my_custom_comments($comment, $args, $depth) {
         <div class="comment-body">
             <div class="comment-meta">
                 <h5 class="comment-author-name mb-1"><?php comment_author(); ?></h5>
-                <div class="comment-date text-muted"><?php comment_date('l, d M Y H:i T'); ?></div>
+                <div class="comment-date text-muted"><?= diffForHumans(strtotime(get_comment_date('c'))); ?></div>
             </div>
             <div class="comment-content">
                 <?php comment_text(); ?>
@@ -287,14 +288,13 @@ function get_current_url(){
 }
 
 function diffForHumans($timestamp) {
-    $now = new DateTime();
-    $date = (new DateTime())->setTimestamp($timestamp);
+    $now = new DateTime('now', wp_timezone());
+    $date = (new DateTime('now', wp_timezone()))->setTimestamp($timestamp);
     $diff = $now->diff($date);
-
 
     $string = '';
     if ($diff->y) {
-        $string = $diff->y . ' tahun' . ($diff->y > 1 ? 's' : '') . ' lalu';
+        $string = $diff->y . ' tahun' . ' lalu';
     } elseif ($diff->m) {
         $string = $diff->m . ' bulan' . ' lalu';
     } elseif ($diff->d) {
@@ -310,6 +310,18 @@ function diffForHumans($timestamp) {
     }
 
     return $string;
+}
+
+function formatTanggalIndonesia($tanggal) {
+    $hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+              'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+    $date = DateTime::createFromFormat('Y-m-d', $tanggal);
+    $hariIndo = $hari[$date->format('w')];
+    $bulanIndo = $bulan[$date->format('n') - 1];
+
+    return "$hariIndo, " . $date->format('d') . " $bulanIndo " . $date->format('Y');
 }
 
 function capitalizeSecondWord($string){
@@ -366,8 +378,6 @@ function limit_words($string, $limit){
 add_shortcode('read_too', 'read_too_shortcode');
 add_filter('excerpt_length', 'set_excerpt_length');
 add_action( 'widgets_init', 'custom_footer_widgets' );
-
-
 
 add_filter('show_admin_bar', '__return_false');
 
@@ -427,6 +437,60 @@ function calculate_reading_time($post) {
     $reading_time = ceil($word_count / $words_per_minute);
     
     return $reading_time;
+}
+
+function get_all_posts(){
+    $posts = get_posts(array(
+        'numberposts' => -1
+    ));
+
+    $choices = [];
+
+    foreach($posts as $post){
+        $choices[$post->ID] = $post->post_title;
+    }
+    
+    return $choices;
+}
+
+function get_menu_id($location){
+    $menu_locations = get_nav_menu_locations();
+    return $menu_locations[$location];
+}
+
+function get_child_menu_items($menu_items, $parent_id){
+    $child_menu_items = [];
+
+    if(!empty($menu_items) && is_array($menu_items)){
+        foreach($menu_items as $menu_item){
+            if(intval($menu_item->menu_item_parent) == intval($parent_id)){
+                $child_menu_items[] = $menu_item;
+            }
+        }
+    }
+
+    return $child_menu_items;
+}
+
+function display_full_content_on_single_page() {
+    global $post;
+
+    // Setup post data
+    setup_postdata( $post );
+
+    // Menggabungkan semua halaman konten
+    $full_content = '';
+    if ( isset( $pages ) && is_array( $pages ) ) {
+        foreach ( $pages as $page_content ) {
+            $full_content .= $page_content;
+        }
+    }
+
+    // Tampilkan konten gabungan
+    echo $full_content;
+
+    // Reset post data
+    wp_reset_postdata();
 }
 
 ?>

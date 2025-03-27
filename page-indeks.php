@@ -12,7 +12,7 @@ get_header()
                 <p class="text-secondary">Cari berita melalui waktu terbit dan kanal tertentu</p>
             </div>
         </div>
-        <form action="" method="get" class="row">
+        <form action="" method="get" class="row gap-3 gap-md-0">
             <div class="col-md-4">
                 <input type="date" name="date" id="date" class="form-control" value="<?= $_GET["date"] ?? date('Y-m-d') ?>">
             </div>

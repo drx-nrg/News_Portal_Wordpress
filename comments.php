@@ -10,7 +10,7 @@ if ( post_password_required() ) {
         <h2 class="comments-title fs-5 fw-semibold mb-3">
             <?php
                 printf(
-                    _nx( 'One comment on "%2$s"', '%1$s comments on "%2$s"', get_comments_number(), 'comments title', 'textdomain' ),
+                    _nx( 'Satu komentar di "%2$s"', '%1$s komentar di "%2$s"', get_comments_number(), 'comments title', 'newslify' ),
                     number_format_i18n( get_comments_number() ),
                     '<span>' . get_the_title() . '</span>'
                 );
@@ -31,7 +31,7 @@ if ( post_password_required() ) {
         <?php the_comments_navigation(); ?>
 
         <?php if ( ! comments_open() ) : ?>
-            <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'textdomain' ); ?></p>
+            <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'newslify' ); ?></p>
         <?php endif; ?>
 
     <?php endif; ?>
@@ -39,16 +39,17 @@ if ( post_password_required() ) {
     <?php
     comment_form( array(
         'class_form'           => 'comment-form', // Wrap form with .comment-form class
-        'title_reply'          => __( 'Leave a Comment', 'textdomain' ),
-        'title_reply_before'   => '<h2 class="comment-reply-title">',
+        'title_reply'          => __( 'Tinggalkan Komentar', 'newslify' ),
+        'title_reply_before'   => '<h2 class="comment-reply-title fw-semibold">',
         'title_reply_after'    => '</h2>',
         'comment_field'        => '<div class="form-group"><label for="comment" class="form-label">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" class="form-control" rows="4" aria-required="true"></textarea></div>',
         'fields'               => array(
-            'author' => '<div class="form-group"><label for="author" class="form-label">' . __( 'Name', 'textdomain' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="author" name="author" type="text" class="form-control" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></div>',
-            'email'  => '<div class="form-group"><label for="email" class="form-label">' . __( 'Email', 'textdomain' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="email" name="email" type="email" class="form-control" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" aria-required="true" /></div>',
-            'url'    => '<div class="form-group"><label for="url" class="form-label">' . __( 'Website', 'textdomain' ) . '</label><input id="url" name="url" type="url" class="form-control" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
+            'author' => '<div class="form-group"><label for="author" class="form-label">' . __( 'Name', 'newslify' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="author" name="author" type="text" class="form-control" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></div>',
+            'email'  => '<div class="form-group"><label for="email" class="form-label">' . __( 'Email', 'newslify' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="email" name="email" type="email" class="form-control" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" aria-required="true" /></div>',
+            'url'    => '<div class="form-group"><label for="url" class="form-label">' . __( 'Website', 'newslify' ) . '</label><input id="url" name="url" type="url" class="form-control" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
         ),
-        'class_submit' => 'btn btn-success', // Add .btn and .btn-dark to submit button
+        // 'class_submit' => 'btn bg-orange fw-semibold', // Add .btn and .btn-dark to submit button,
+        'submit_button' => '<button class="btn bg-orange fw-semibold" value="Kirim Komentar" name="submit" type="submit" style="font-family: Figtree;">Kirim Komentar</button>'
     ) );
     ?>
 

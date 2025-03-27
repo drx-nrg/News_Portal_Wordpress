@@ -3,7 +3,7 @@ Theme Name: Newslify - Responsive WordPress Theme
 Theme URI: https://github.com/tidythemes/blankslate
 Author: Bima Ananta Al Baihaqi
 Author URI: https://github.com/drx-nrg
-Description: Tema sederhana untuk pengembangan portal berita berbasis WordPress.
+Description: Newslify adalah tema WordPress yang dirancang khusus untuk kebutuhan portal berita dan situs web konten. Dengan desain responsif yang adaptif di berbagai perangkat, Newslify memastikan pengalaman pengguna yang optimal baik di desktop maupun perangkat mobile. Fitur unggulan Newslify termasuk Customizer yang sangat user-friendly, memungkinkan Anda untuk menyesuaikan tampilan dan nuansa situs web Anda dengan mudah tanpa memerlukan keterampilan pengkodean. Newslify juga mendukung berbagai proses komersialisasi dengan menyediakan widget khusus untuk iklan yang dapat ditempatkan di lokasi strategis, meningkatkan potensi pendapatan dari situs Anda.Dengan Newslify, Anda mendapatkan tema yang tidak hanya indah dan fungsional, tetapi juga fleksibel untuk memenuhi berbagai kebutuhan dan preferensi bisnis Anda.
 Tags: accessibility-ready, one-column, two-columns, custom-menu, featured-images, microformats, sticky-post, threaded-comments, translation-ready
 Version: 2023
 Requires at least: 5.2
@@ -109,7 +109,7 @@ body {
 #sidebar .widget-container a {
     color: black;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: normal;
     display: block;
     margin-bottom: 10px;
 }
@@ -248,12 +248,8 @@ article[class="col-md-12"] .card-title:hover article[class="col-md-12"] .wp-post
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.5));
     color: #fff;
     padding: 1rem;
-    transition: .1s ease all;
+    transition: .5s ease all;
     margin-bottom: 0 !important;
-}
-
-.card:hover .card-img-overlay {
-    background: rgba(0, 0, 0, 0.0);
 }
 
 .card-title {
@@ -279,7 +275,7 @@ article[class="col-md-12"] .card-title:hover article[class="col-md-12"] .wp-post
     display: block;
     width: 100%;
     height: 4px;
-    background-color: #1b995e;
+    background-color: var(--primary);
     opacity: 1 !important;
     margin: 0 !important;
     border: none;
@@ -352,10 +348,6 @@ a[rel='author external'] {
     min-width: max-content;
 }
 
-.bg-success {
-    background-color: #1b995e !important;
-}
-
 .fixed-header {
     position: absolute;
     top: 0;
@@ -418,7 +410,7 @@ a[rel='author external'] {
 
 .tag-cloud-link::before {
     content: "#";
-    color: #1b995e;
+    color: var(--success);
 }
 
 .post-content img {
@@ -444,7 +436,7 @@ a[rel='author external'] {
     position: sticky;
     top: 0;
     z-index: 999;
-    background-color: #1b995e;
+    background-color: var(--primary) !important;
 }
 
 form[role="search"] {
@@ -461,6 +453,10 @@ form[role="search"] label {
 form[role="search"] label input {
     display: block;
     flex: 1 1 0;
+}
+
+#search-modal-btn{
+    cursor: pointer;
 }
 
 .nav-next a,
