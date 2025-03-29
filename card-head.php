@@ -1,20 +1,51 @@
-<div class="col-md-12 card bg-light mb-0 rounded-2 border-0 overflow-hidden">
-    <div class="row border-bottom">
-        <div class="col-12 p-0 rounded-2 overflow-hidden" style="height: 300px;">
-            <a href="<?php the_permalink() ?>">
-                <?php the_post_thumbnail('thumbnail', array('class' => 'img-fluid object-cover w-100')) ?>
+<?php
+    if(!array_key_exists('border_bottom', $args))
+    {
+        $args['border_bottom'] = true;
+    }
+
+?>
+<article class="col-md-12 card bg-light mb-0 rounded-2 border-0 overflow-hidden" itemscope itemtype="https://schema.org/NewsArticle">
+    <div class="row <?= $args['border_bottom'] == true ? 'border-bottom' : '' ?>">
+        <!-- Thumbnail Image -->
+        <div class="col-12 p-0 rounded-2 overflow-hidden" style="height: 300px;" itemprop="image">
+            <a href="<?php the_permalink(); ?>" aria-label="Baca selengkapnya tentang <?php the_title_attribute(); ?>">
+                <?php the_post_thumbnail('medium', array('class' => 'img-fluid object-cover w-100 h-100', 'alt' => get_the_title())); ?>
             </a>
         </div>
-        <div class="col-12 py-4 px-2 mb-0">
-            <?php 
-                $categories = get_the_category();
 
-                foreach($categories as $category):
-            ?>
-                <a href="<?= get_category_link($category) ?>" class="d-block text-orange text-uppercase mb-1 fw-semibold text-decoration-none"><?= $category->name ?></a>
-            <?php endforeach; ?>
-            <h1 class="card-title fs-md-5 fs-lg-4"><a href="<?php the_permalink() ?>" class="text-dark text-decoration-none"><?= get_the_title() ?></a></h1>
-            <div class="text-secondary mt-2"><?= wp_trim_words(get_the_excerpt(), 10, '...') ?></div>
+        <!-- Post Content -->
+        <div class="col-12 py-4 px-2 mb-0">
+            <!-- Categories -->
+            <div class="post-categories" itemprop="articleSection">
+                <?php $categories = get_the_category(); ?>
+                <?php if (!empty($categories)) : ?>
+                    <?php foreach ($categories as $category) : ?>
+                        <a href="<?= esc_url(get_category_link($category)) ?>" 
+                           class="d-block text-orange text-uppercase mb-1 fw-semibold text-decoration-none">
+                            <?= esc_html($category->name) ?>
+                        </a>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            
+            <!-- Title -->
+            <h2 class="card-title fs-md-5 fs-lg-4" itemprop="headline">
+                <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none">
+                    <?php the_title(); ?>
+                </a>
+            </h2>
+
+            <!-- Excerpt -->
+            <p class="text-dark mt-2" itemprop="description">
+                <?= wp_trim_words(get_the_excerpt(), 10, '...'); ?>
+            </p>
         </div>
     </div>
-</div>
+
+    <!-- Metadata for SEO -->
+    <meta itemprop="url" content="<?php the_permalink(); ?>">
+    <meta itemprop="datePublished" content="<?php echo get_the_date('c'); ?>">
+    <meta itemprop="dateModified" content="<?php echo get_the_modified_date('c'); ?>">
+    <meta itemprop="author" content="<?php the_author(); ?>">
+</article>

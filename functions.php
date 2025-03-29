@@ -2,7 +2,6 @@
 
 include __DIR__ . '/customizer/main.php';
 
-
 add_action('after_setup_theme', 'blankslate_setup');
 function blankslate_setup()
 {
@@ -41,43 +40,19 @@ function blankslate_notice_dismissed()
 add_action('wp_enqueue_scripts', 'blankslate_enqueue');
 function blankslate_enqueue()
 {
-    wp_enqueue_style('bootstrap-css', get_template_directory_uri() . './css/bootstrap.min.css');
+    wp_enqueue_style('bootstrap-css','https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
     wp_enqueue_style('stylesheet', get_stylesheet_uri());
     wp_enqueue_style('bootstrap-icons', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css");
-    wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
-    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js');
-    wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
+    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
     wp_enqueue_script('jquery');
-}
-add_action('wp_footer', 'blankslate_footer');
-function blankslate_footer()
-{
-?>
-    <script>
-        jQuery(document).ready(function($) {
-            var deviceAgent = navigator.userAgent.toLowerCase();
-            if (deviceAgent.match(/(iphone|ipod|ipad)/)) {
-                $("html").addClass("ios");
-                $("html").addClass("mobile");
-            }
-            if (deviceAgent.match(/(Android)/)) {
-                $("html").addClass("android");
-                $("html").addClass("mobile");
-            }
-            if (navigator.userAgent.search("MSIE") >= 0) {
-                $("html").addClass("ie");
-            } else if (navigator.userAgent.search("Chrome") >= 0) {
-                $("html").addClass("chrome");
-            } else if (navigator.userAgent.search("Firefox") >= 0) {
-                $("html").addClass("firefox");
-            } else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
-                $("html").addClass("safari");
-            } else if (navigator.userAgent.search("Opera") >= 0) {
-                $("html").addClass("opera");
-            }
-        });
-    </script>
-<?php
+
+    wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
+    wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
+
+    if(get_theme_mod('is_active_slider', true))
+    {
+        
+    }
 }
 add_filter('document_title_separator', 'blankslate_document_title_separator');
 function blankslate_document_title_separator($sep)
@@ -157,8 +132,8 @@ function blankslate_widgets_init()
         'id' => 'primary-widget-area',
         'before_widget' => '<li id="%1$s" class="widget-container bg-white %2$s">',
         'after_widget' => '</li>',
-        'before_title' => '<h3 class="widget-title bg-orange fs-6 mb-3" style="clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); padding: 10px 25px 10px 15px; max-width: fit-content;">',
-        'after_title' => '</h3>',
+        'before_title' => '<h2 class="widget-title bg-orange fs-6 mb-3" style="clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%); padding: 10px 25px 10px 15px; max-width: fit-content;">',
+        'after_title' => '</h2>',
     ));
 }
 add_action('wp_head', 'blankslate_pingback_header');
@@ -211,70 +186,6 @@ function my_custom_comments($comment, $args, $depth) {
     </li>
     <?php
 }
-function custom_footer_widgets() {
-    register_sidebar( array(
-        'name'          => __( 'Footer Widget 1', 'textdomain' ),
-        'id'            => 'footer-widget-1',
-        'before_widget' => '<div class="footer-widget bg-light">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="footer-widget-title">',
-        'after_title'   => '</h2>',
-    ) );
-    register_sidebar( array(
-        'name'          => __( 'Footer Widget 2', 'textdomain' ),
-        'id'            => 'footer-widget-2',
-        'before_widget' => '<div class="footer-widget bg-light">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="footer-widget-title">',
-        'after_title'   => '</h2>',
-    ) );
-    register_sidebar( array(
-        'name'          => __( 'Footer Widget 3', 'textdomain' ),
-        'id'            => 'footer-widget-3',
-        'before_widget' => '<div class="footer-widget bg-light">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="footer-widget-title">',
-        'after_title'   => '</h2>',
-    ) );
-}
-
-function widget_iklan(){
-    register_sidebar(array(
-        'name' => __("Iklan Samping Kanan", 'textdomain'),
-        'id' => 'right-side-ads-widget',
-        'before_widget' => '<div class="ads-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="ads-widget-title">',
-        'after_title'   => '</h2>',
-    ));
-    register_sidebar(array(
-        'name' => __("Iklan Samping Kiri", 'textdomain'),
-        'id' => 'left-side-ads-widget',
-        'before_widget' => '<div class="ads-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="ads-widget-title">',
-        'after_title'   => '</h2>',
-    ));
-    register_sidebar(array(
-        'name' => __("Iklan Atas", 'textdomain'),
-        'id' => 'top-ads-widget',
-        'before_widget' => '<div class="w-100 border border-dark ads-widget p-0">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="ads-widget-title">',
-        'after_title'   => '</h2>',
-    ));
-    register_sidebar(array(
-        'name' => __("Iklan Bawah", 'textdomain'),
-        'id' => 'bottom-ads-widget',
-        'before_widget' => '<div class="ads-widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="ads-widget-title">',
-        'after_title'   => '</h2>',
-    ));
-}
-
-add_action('widgets_init', 'widget_iklan');
-
 function set_excerpt_length(){
     return 15;
 }
@@ -377,57 +288,6 @@ function limit_words($string, $limit){
 
 add_shortcode('read_too', 'read_too_shortcode');
 add_filter('excerpt_length', 'set_excerpt_length');
-add_action( 'widgets_init', 'custom_footer_widgets' );
-
-add_filter('show_admin_bar', '__return_false');
-
-function blankslate_customize_register($wp_customize) {
-    // Menambahkan Seksi
-    $wp_customize->add_section('blankslate_custom_section', array(
-        'title'    => __('Base Theme Settings', 'blankslate'),
-        'priority' => 30,
-    ));
-
-    // Menambahkan Pengaturan
-    $wp_customize->add_setting('blankslate_custom_setting', array(
-        'default'   => 'Jokowi Ganteng',
-        'transport' => 'refresh', // Atau 'postMessage' jika Anda ingin menggunakan teknik AJAX untuk pratinjau langsung
-    ));
-
-    // Menambahkan Kontrol
-    $wp_customize->add_control('blankslate_custom_control', array(
-        'label'    => __('Jokowi Headline', 'blankslate'),
-        'section'  => 'blankslate_custom_section',
-        'settings' => 'blankslate_custom_setting',
-        'type'     => 'text', // Jenis kontrol (text, checkbox, radio, etc.)
-    ));
-
-    $wp_customize->add_setting('blankslate_custom_color', array(
-        'default'   => '#ffffff',
-        'transport' => 'refresh',
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'blankslate_custom_color_control', array(
-        'label'    => __('Background Color', 'blankslate'),
-        'section'  => 'blankslate_custom_section',
-        'settings' => 'blankslate_custom_color',
-    )));
-
-    $wp_customize->add_setting('blankslate_custom_image', array(
-        'default'   => '',
-        'transport' => 'refresh',
-    ));
-    
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'blankslate_custom_image_control', array(
-        'label'    => __('Header Image', 'blankslate'),
-        'section'  => 'blankslate_custom_section',
-        'settings' => 'blankslate_custom_image',
-    )));
-    
-    
-}
-
-add_action('customize_register', 'blankslate_customize_register');
 
 function calculate_reading_time($post) {
     $content = get_post_field('post_content', $post);

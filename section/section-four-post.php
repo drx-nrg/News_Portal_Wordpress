@@ -21,7 +21,7 @@
         if($args["category_post_query"]->have_posts()): while($args["category_post_query"]->have_posts()): $args["category_post_query"]->the_post() 
     ?>
         <?php if(in_array($index, [2, 3])): ?>
-            <div class="col-md-6 mt-3">
+            <div class="col-lg-6 px-0 px-lg-3 mt-3">
                 <?php get_template_part('card', 'secondary', array("mb" => false)); ?>
             </div>
         <?php endif; ?>

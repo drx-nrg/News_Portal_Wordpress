@@ -1,7 +1,6 @@
 <?php get_header(); ?>
-
-<main id="main-content" role="main">
-    <section id="single-page" class="container">
+<main id="primary" class="site-main">
+    <div class="container mt-4" style="padding: 0 1.5rem !important;">
         <div class="row">
             <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-8 d-flex flex-column'); ?> itemscope itemtype="https://schema.org/NewsArticle">
                 <?php
@@ -13,7 +12,7 @@
                                 <?php
                                 $categories = get_the_category();
                                 foreach ($categories as $category) {
-                                    echo '<a href="'. get_category_link($category) .'" class="badge bg-primary py-2 px-3 fs-6 rounded-pill me-2 text-decoration-none" itemprop="articleSection">' . esc_html($category->name) . '</a>';
+                                    echo '<a href="' . get_category_link($category) . '" class="badge bg-primary py-2 px-3 fs-6 rounded-pill me-2 text-decoration-none" itemprop="articleSection">' . esc_html($category->name) . '</a>';
                                 }
                                 ?>
                             </div>
@@ -25,13 +24,13 @@
                             <a href="#" class="btn py-2 me-2 rounded-pill bg-success" aria-label="Share on WhatsApp"><i class="bi bi-whatsapp text-white"></i></a>
                             <a href="#" class="btn py-2 me-2 rounded-pill bg-primary" aria-label="Share on Facebook"><i class="bi bi-facebook text-white"></i></a>
                         </div>
-                        <div class="d-flex flex-wrap w-100 fs-6 fs-md-5 text-secondary justify-content-center gap-2">
-                            <div class="post-author p-0">
+                        <div class="d-flex flex-wrap w-100 fs-6 fs-md-5 text-dark justify-content-center gap-2">
+                            <div class="post-author p-0 mb-0">
                                 <i class="bi bi-person me-2"></i> Oleh <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>" class="text-decoration-none" itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_author(); ?></a>
                             </div>
                             <p class="d-none d-lg-block">-</p>
-                            <div class="post-date p-0">
-                                <i class="bi bi-calendar me-2"></i> <time datetime="<?php echo esc_html(get_the_date('c')); ?>" itemprop="datePublished"><?php echo date_i18n('l, d M Y H:i', strtotime(get_the_date('c'))); ?></time>
+                            <div class="post-date p-0 mb-0">
+                                <i class="bi bi-calendar me-2"></i> <time datetime="<?php echo esc_html(get_the_date('c')); ?>" itemprop="datePublished"><?= wp_date('l, d M Y H:i', get_post_time('U', true)) ?></time>
                             </div>
                             <div class="w-100 reading-time text-center mt-2 mt-md-0 mb-3" style="margin-top: -30px;">
                                 <i class="bi bi-clock"></i>
@@ -41,7 +40,7 @@
                         <figure class="post-thumbnail mb-3 overflow-hidden rounded-3 d-flex flex-column align-items-center" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                             <?php
                             if (has_post_thumbnail()) :
-                                the_post_thumbnail('large');
+                                the_post_thumbnail('medium');
                                 $thumb_id = get_post_thumbnail_id();
                                 $thumb_description = null;
 
@@ -116,22 +115,22 @@
                     <h2 class="fw-semibold fs-2">Artikel Terkait</h2>
                     <p class="text-secondary">Artikel yang memiliki jenis dan kategori yang sama</p>
                     <?php
-                        $args = array(
-                            'post_type' => 'post',
-                            'posts_per_page' => 5,
-                            'category_name' => $categories[0]->slug,
-                            'post__not_in' => array(intval(get_the_ID()))
-                        );
+                    $args = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 5,
+                        'category_name' => $categories[0]->slug,
+                        'post__not_in' => array(intval(get_the_ID()))
+                    );
 
-                        $related_articles = new WP_Query($args);
+                    $related_articles = new WP_Query($args);
 
-                        if(!$related_articles->have_posts()):
+                    if (!$related_articles->have_posts()):
                     ?>
                         <p class="text-body-secondary">Artikel tidak tersedia</p>
-                    <?php
-                        endif;
-                        if ($related_articles->have_posts()) : while ($related_articles->have_posts()) : $related_articles->the_post();
-                    ?>
+                        <?php
+                    endif;
+                    if ($related_articles->have_posts()) : while ($related_articles->have_posts()) : $related_articles->the_post();
+                        ?>
                             <?php get_template_part('entry', 'summary'); ?>
                     <?php endwhile;
                         wp_reset_postdata();
@@ -146,7 +145,7 @@
                 <?php get_sidebar(); ?>
             </aside>
         </div>
-    </section>
+    </div>
 </main>
 
 <?php get_footer(); ?>

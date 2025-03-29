@@ -32,7 +32,7 @@
         ));
 
         $wp_customize->add_setting('site-title', array(
-            'default' => __("WartaPangan.com"),
+            'default' => get_bloginfo('name'),
             'transport' => 'refresh'
         ));
 

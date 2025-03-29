@@ -49,7 +49,7 @@ if ( post_password_required() ) {
             'url'    => '<div class="form-group"><label for="url" class="form-label">' . __( 'Website', 'newslify' ) . '</label><input id="url" name="url" type="url" class="form-control" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
         ),
         // 'class_submit' => 'btn bg-orange fw-semibold', // Add .btn and .btn-dark to submit button,
-        'submit_button' => '<button class="btn bg-orange fw-semibold" value="Kirim Komentar" name="submit" type="submit" style="font-family: Figtree;">Kirim Komentar</button>'
+        'submit_button' => '<button class="btn bg-orange fw-semibold" value="Kirim Komentar" name="submit" type="submit" style="font-family: Titillium Web;">Kirim Komentar</button>'
     ) );
     ?>
 

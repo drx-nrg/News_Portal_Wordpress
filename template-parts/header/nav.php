@@ -1,5 +1,10 @@
-<div class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange shadow-sm">
-    <nav class="container" role="navigation">
+<nav class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange shadow-sm">
+    <style>
+        .scrollbar-nav::-webkit-scrollbar{
+            display: none;
+        }
+    </style>
+    <div class="container scrollbar-nav overflow-x-auto" role="navigation" style="padding: 0 1.5rem !important;">
         <?php
         $menu_id = get_menu_id('main-menu');
         $menu_items = wp_get_nav_menu_items($menu_id);
@@ -14,7 +19,7 @@
         
         if( !empty($menu_items) && is_array($menu_items) ):
         ?>
-            <ul class="navbar-nav d-flex flex-row gap-5 w-100">
+            <ul class="navbar-nav d-flex flex-row gap-5" style="min-width: max-content;">
                 <?php foreach( $menu_items as $menu_item ): ?>
                     <?php if( !$menu_item->menu_item_parent ): ?>
                         <?php  
@@ -23,7 +28,7 @@
                             
                             if( !$has_children ):
                         ?>
-                            <li class="nav-item active d-none d-md-block" style="cursor: pointer;">
+                            <li class="nav-item active d-block" style="cursor: pointer;">
                                 <a class="nav-link active text-decoration-none fs-6 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>" ><?= esc_html($menu_item->title) ?></a>
                             </li>
                         <?php else: ?>
@@ -43,11 +48,10 @@
                 <?php endforeach; ?>
                 <li class="d-flex flex-row align-items-center ms-lg-auto">
                     <button aria-label="Show sidebar menu" id="toggle-sidebar-btn" style="background-color: transparent; border: none; outline: none;" class="d-flex flex-row align-items-center gap-3">
-                        <p class="text-white mb-0 fs-6 move-text d-none d-lg-block"><?= esc_html__("Show All Category", "newslify") ?> <i class="bi bi-chevron-double-right"></i></p>
                         <i class="bi bi-list text-white fs-4 mb-0"></i>
                     </button>
                 </li>
             </ul>
         <?php endif; ?>
-    </nav>
-</div>
+    </div>
+</nav>

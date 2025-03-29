@@ -5,7 +5,7 @@
 get_header() 
 ?>
 <section id="post-index">
-    <div class="container-fluid">
+    <div class="container mt-4" style="padding: 0 1.5rem !important;">
         <div class="row">
             <div class="col-12">
                 <h1 class="fw-semibold fs-2">Indeks Berita</h1>

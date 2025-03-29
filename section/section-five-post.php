@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row px-2 py-0 align-items-stretch">
     <?php
         $index = 0;
         if ($args["category_post_query"]->have_posts()) : while ($args["category_post_query"]->have_posts()) : $args["category_post_query"]->the_post()
     ?>
             <?php if ($index == 0) : ?>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="row">
                         <?php get_template_part('card', 'head'); ?>
                     </div>
@@ -13,7 +13,7 @@
             <?php $index++; ?>
     <?php endwhile;
     endif; ?>
-    <div class="col-md-6 d-flex flex-column <?= count($args["category_post_query"]->posts) == 5 ? "justify-content-between" : "" ?>">
+    <div class="col-lg-6 px-0 px-lg-3 d-flex flex-column <?= count($args["category_post_query"]->posts) == 5 ? "justify-content-between" : "" ?>">
         <?php
         $index = 0;
         if ($args["category_post_query"]->have_posts()) : while ($args["category_post_query"]->have_posts()) : $args["category_post_query"]->the_post()

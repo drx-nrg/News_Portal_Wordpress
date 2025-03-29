@@ -1,11 +1,11 @@
 <?php get_header(); ?>
 <section id="search-result">
-    <div class="container-fluid mb-5">
+    <div class="container-fluid mb-5 mt-4">
         <?php if (have_posts()) : ?>
             <div class="row">
                 <div class="col-md-8">
                     <header class="header mb-3">
-                        <h1 class="entry-title fs-4 fw-normal" itemprop="name">Hasil Pencarian Untuk : <span class="fw-semibold"><?= get_search_query() ?></span></h1>
+                        <h1 class="entry-title fs-6 fs-md-5 fs-lg-4 fw-normal text-dark" itemprop="name">Hasil Pencarian Untuk : <span class="fw-semibold"><?= get_search_query() ?></span></h1>
                     </header>
                     <?php while (have_posts()) : the_post(); ?>
                         <?php get_post_type() == "post" ? get_template_part('entry', 'summary') : null ?>

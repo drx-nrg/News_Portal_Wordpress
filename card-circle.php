@@ -1,6 +1,6 @@
 <article class="col-md-12 card-secondary d-flex align-items-center text-decoration-none text-dark border-bottom pb-2" style="height: 120px;">
     <?php if (has_post_thumbnail()) : ?>
-        <a href="<?php the_permalink() ?>" class="col-4 d-block post-thumbnail overflow-hidden rounded-circle p-0" style="width: 100px; height: 100px; border: 2px solid var(--primary);">
+        <a href="<?php the_permalink() ?>" class="col-4 d-block post-thumbnail overflow-hidden rounded-circle p-0" style="width: 100px; height: 100px; border: 2px solid var(--primary);" aria-label="Baca selengkapnya tentang <?= get_the_title() ?>">
             <?php the_post_thumbnail('medium', array('class' => 'img-fluid w-100 h-100 object-cover mb-0')); ?>
         </a>
     <?php endif; ?>

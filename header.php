@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 <style type="text/css">
+    *{
+        font-family: Titillium Web;
+    }
+    #container,.navigation-top{width:100%}.menu-item a,.more-link,.page-number,.post-content a,.post-page-numbers,.tag-cloud-link,a[rel='author external'],a[rel=next],a[rel=prev]{text-decoration:none}body{font-family:'Titillium Web'}#container{height:fit-content;padding:0 5%;box-sizing:border-box}.title{font-weight:bolder}.navbar-custom{background-color:#000}.navbar-custom .navbar-nav .nav-link{color:#fff}.navbar-custom .navbar-nav .nav-link:hover{color:#ddd}.menu-item a{color:#fff;font-weight:600}#search-modal-btn,.menu-item{cursor:pointer}.menu-item-has-children{display:flex;align-items:center;gap:5px;position:relative}.menu-item-has-children .sub-menu{position:absolute;top:0;left:50px;list-style:none inside;background-color:#212529;padding:10px 20px;border-radius:8px;opacity:0;pointer-events:none;transition:.3s}.sub-menu-active{top:30px!important;pointer-events:auto!important;opacity:1!important}.widget-title{font-size:1.2rem}.xoxo{display:flex;flex-direction:column;gap:1.6rem;list-style:none!important;font-family:Poppins sans-serif;padding:0}#sidebar{position:sticky;top:5rem}#sidebar .widget-container{padding:20px;box-shadow:rgba(99,99,99,.2) 0 2px 4px 0;list-style:none!important;font-family:Poppins!important}#sidebar .widget-container a{color:#000;text-decoration:none;font-weight:400;display:block;margin-bottom:10px}#sidebar .widget-container li{list-style:none}.comment-author .avatar{width:80px;height:80px;border-radius:50%}.comment-body{display:flex;flex-direction:column}.comment-author-name{font-weight:700;margin-bottom:5px}.comment-date{font-size:.9em;color:#888}.comment-content{margin-top:10px}.wp-post-image{width:100%;height:100%;object-fit:cover;transition:.5s;margin-bottom:0!important}.site-footer{background-color:#333;color:#fff}.footer-widget{padding:20px;margin-bottom:1.6rem;border-radius:5px;font-family:Poppins,sans-serif}.footer-widget-title{font-weight:700;margin-bottom:10px;color:#fff}.comment-form{font-family:Inter,sans-serif}.comment-form .form-group{margin-bottom:1.5rem}.comment-form .form-label{font-weight:700}.comment-form .form-control{font-size:1rem;padding:.75rem;border-radius:.25rem}.comment-form .btn{font-size:1rem;padding:.5rem 1rem;border-radius:.25rem}.page-links{display:flex;align-items:center;gap:15px}.page-number{display:block;width:40px;height:40px;display:flex;justify-content:center;align-items:center;padding:10px;border-radius:50%;background-color:#000;color:#fff}.current .page-number{background-color:#198754!important;color:#fff!important}.card{border-radius:.5rem;overflow:hidden;padding-bottom:0!important}.card:hover .wp-post-image,article[class=col-md-12] .card-title:hover article[class=col-md-12] .wp-post-image{transform:scale(1.2)}.card-img-overlay{width:100%;height:102%;object-fit:cover;top:0;left:0;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.5));color:#fff;padding:1rem;transition:.5s;margin-bottom:0!important}.card-title{font-size:1.25rem;font-weight:600}.card-text{margin-bottom:1rem}.card a.btn{border-radius:50px;padding:.5rem 1rem}.category-title{position:relative;margin-bottom:0}.green-line{display:block;width:100%;height:4px;background-color:var(--primary);opacity:1!important;margin:0 0 10px!important;border:none}.card-title:hover,.post-title:hover{text-decoration:underline!important}.social-icon{display:block;color:#000;transition:.3s}.social-icon:hover{transform:translate(0,-5px)}a[rel=next],a[rel=prev]{font-size:1.2rem}a[rel='author external']{color:#000}@keyframes moveSide{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,0)}}.more-link:hover{filter:brightness(120%);animation:.5s infinite moveSide}.navbar-container{max-width:100%;overflow-x:scroll}.navbar-container::-webkit-scrollbar{display:none}.navbar-nav{min-width:max-content}.fixed-header{position:absolute;top:0;left:0;z-index:999}.relative{position:relative}::-webkit-scrollbar-thumb:hover{background-color:#198754}::-webkit-scrollbar-track{background-color:#f1f1f1}.latest-swiper-container .swiper-slide{height:200px!important}.top-bar{position:fixed}.wp-block-tag-cloud{display:flex;flex-wrap:wrap}.tag-cloud-link{display:block!important;max-width:fit-content;padding:10px;border-radius:4px;font-weight:500!important;opacity:1;margin:0;color:#000!important;font-size:16px!important}.tag-cloud-link::before{content:"#";color:var(--success)}.post-content img{max-width:100%}#menu-page-menu li a{color:#000;font-weight:600}#menu-menu-2 li a{font-weight:600;color:#fff;font-size:1.2rem}.posts-navigation{display:none}.main-menu{position:sticky;top:0;z-index:999;background-color:var(--primary)!important}form[role=search]{display:flex!important;gap:5px;width:100%}form[role=search] label{display:flex;width:100%}form[role=search] label input{display:block;flex:1 1 0}.nav-next a,.nav-previous a{color:#888;text-transform:uppercase;font-size:.9rem}
     :root{
         --primary: <?php echo get_theme_mod('primary_color', '#ff7700'); ?>;
     }
@@ -53,27 +56,36 @@
         pointer-events: auto;
         opacity: 1;
     }
-    .sub-menu{
-
-    }
     .sidebar-wrapper{
         width: 100%;
         height: 100vh;
         position: fixed;
-        background-color:  rgba(0, 0, 0, 0.4);
         display: flex;
         justify-content: flex-end;
         z-index: 9999;
         transition: all .3s ease;
-        transform: translate(400px, 0px);
         opacity: 0;
         pointer-events: none;
+    }
+    .sidebar-wrapper::before{
+        content: "";
+        transition: all .4s ease-in-out;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.5);
+        backdrop-filter: blur(5px);
+        z-index: 9998;
     }
     .category-menu-sidebar{
         width: 400px;
         height: 100vh;
-        background-color: white;
         padding: 50px;
+        z-index: 9999;
+        transition: all .3s ease;
+        transform: translate(400px, 0px);
     }
     .sub-menu-sidebar{
         /* position: absolute; */
@@ -154,7 +166,8 @@
     a{
         text-decoration: none !important;
     }
-    .page_item a{
+    /* dark mode light mode */
+    .menu-item a{
         color: black !important;
         font-weight: 600 !important;
     }
@@ -179,7 +192,7 @@
         padding-left: 0;
     }
     #sidebar .widget-container li {
-        border-bottom: 0.5px solid rgba(0,0,0,0.5);
+        border-bottom: 0.5px solid #dee2e6;
         margin-bottom: 1rem;
     }
     #sidebar .widget-container li a{
@@ -193,12 +206,74 @@
             max-height: 400px;
         }
     }
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0;
+    }
+    .swiper-slide{
+        width: 100% !important;
+    }
+    @media screen and (max-width: 576px)
+    {
+        .headline-swiper-slide-item{
+            max-height: 300px !important;
+        }
+    }
+    @media screen and (min-width: 576px)
+    {
+        .headline-swiper-slide-item{
+            max-height: 400px !important;
+        }
+    }
+    .pagination, .pagination :is(.nav-links){
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .pagination .page-numbers{
+        width: 50px;
+        height: 50px;
+        padding: 20px;
+        border-radius: 50px;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    .pagination :is(.page-numbers.current){
+        background-color: var(--primary);
+        color: white;
+    }
+    /* dark mode light mode */
+    /* .bg-white{
+        background-color: rgba(0,0,0,0.9) !important;
+    }
+    .text-white{
+        color: dark !important;
+    }
+    .text-dark, .text-secondary{
+        color: white !important;
+    }
+    .bg-light{
+        background-color: rgba(0,0,0,0.9) !important;
+    } */
 </style>
 <body <?php body_class('bg-light'); ?>>
     <?php wp_body_open(); ?>
     <div id="wrapper" class="hfeed">
         <div class="sidebar-wrapper">
-            <div class="category-menu-sidebar">
+            <div class="category-menu-sidebar bg-white">
                 <button id="toggle-sidebar-btn" 
                         class="bi bi-x text-dark fs-1" 
                         style="position: absolute; top: 20px; right: 20px; cursor: pointer; border: none; background-color: transparent;"
@@ -206,7 +281,7 @@
                         aria-controls="sidebar" 
                         aria-expanded="true">
                 </button>                
-                <h1 class="fs-2 text-dark fw-semibold mb-3 d-flex flex-row gap-2 align-items-center"><svg class="fs-3 text-dark" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.78 10.37A1 1 0 0 0 22 10h-2V9a3 3 0 0 0-3-3h-6.28l-.32-1a3 3 0 0 0-2.84-2H4a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14.4a3 3 0 0 0 2.92-2.35L23 11.22a1 1 0 0 0-.22-.85M5.37 18.22a1 1 0 0 1-1 .78H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3.56a1 1 0 0 1 1 .68l.54 1.64A1 1 0 0 0 10 8h7a1 1 0 0 1 1 1v1H8a1 1 0 0 0-1 .78Zm14 0a1 1 0 0 1-1 .78H7.21a1.4 1.4 0 0 0 .11-.35L8.8 12h12Z"/></svg> <?= __("Menu Kategori", "newslify") ?></h1>
+                <h2 class="fs-2 text-dark fw-semibold mb-3 d-flex flex-row gap-2 align-items-center"><svg class="fs-3 text-dark" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.78 10.37A1 1 0 0 0 22 10h-2V9a3 3 0 0 0-3-3h-6.28l-.32-1a3 3 0 0 0-2.84-2H4a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14.4a3 3 0 0 0 2.92-2.35L23 11.22a1 1 0 0 0-.22-.85M5.37 18.22a1 1 0 0 1-1 .78H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3.56a1 1 0 0 1 1 .68l.54 1.64A1 1 0 0 0 10 8h7a1 1 0 0 1 1 1v1H8a1 1 0 0 0-1 .78Zm14 0a1 1 0 0 1-1 .78H7.21a1.4 1.4 0 0 0 .11-.35L8.8 12h12Z"/></svg> <?= __("Menu Kategori", "newslify") ?></h2>
                 <nav class="container" role="navigation">
                     <?php
                     $menu_id = get_menu_id('main-menu');
@@ -224,14 +299,14 @@
                                         if( !$has_children ):
                                     ?>
                                         <li class="nav-item active d-flex flex-row gap-2 align-items-center" style="cursor: pointer;">
-                                            <i class="bi bi-play-fill"></i>
+                                            <i class="bi bi-play-fill text-dark"></i>
                                             <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>" ><?= esc_html($menu_item->title) ?></a>
                                         </li>
                                     <?php else: ?>
                                         <li class="nav-item active has-sub-menu-sidebar d-flex flex-column gap-2" style="cursor: pointer;">
                                             <!-- <svg class="text-dark fs-3" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m14.83 11.29l-4.24-4.24a1 1 0 0 0-1.42 0a1 1 0 0 0 0 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41a1 1 0 0 0 .71.29a1 1 0 0 0 .71-.29l4.24-4.24a1 1 0 0 0 0-1.42"/></svg> -->
                                             <div class="nav-item-dropdown-title w-100 bg-white d-flex flex-row align-items-center gap-2">
-                                                <i class="bi bi-play-fill"></i>
+                                                <i class="bi bi-play-fill text-dark"></i>
                                                 <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>" ><?= esc_html($menu_item->title) ?></a>
                                                 <svg class="sub-menu-icon text-dark fs-3" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"/></svg>
                                             </div>
@@ -255,12 +330,14 @@
         <?php get_template_part('template-parts/header/nav-main') ?>
         <?php get_template_part('template-parts/header/nav') ?>
 
-        <div style="width: 100%; height: 100vh; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.3); z-index: 9999; display: none;" class="align-items-center" id="search-modal">
-            <div class="row w-100 justify-content-center modals">
-                <div class="search-modal col-md-4 rounded-2 bg-white d-flex flex-column justify-content-center align-items-center p-5" style="height: 200px; position: relative">
-                    <i class="bi bi-x fs-2" style="position: absolute; top: 0; right: 5px;" id="search-modal-btn"></i>
-                    <h1 class="fs-2 fw-semibold mb-3">Cari Berita</h1>
-                    <?php get_search_form() ?>
+        <div style="min-width: 100%; height: 100vh; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.3); z-index: 9999; display: none;" class="container justify-content-center align-items-center" id="search-modal">
+            <div class="container">
+                <div class="row justify-content-center modals">
+                    <div class="search-modal col-md-6 rounded-2 bg-white d-flex flex-column justify-content-center align-items-center p-5" style="height: 200px; position: relative">
+                        <i class="bi bi-x fs-2 text-dark" style="position: absolute; top: 0; right: 5px;" id="search-modal-btn"></i>
+                        <h1 class="fs-2 fw-semibold mb-3 text-dark">Cari Berita</h1>
+                        <?php get_search_form() ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,8 +349,3 @@
             <li><a href="https://youtube.com" class="p-3 bg-danger text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-youtube"></i> <span id="social-media-name">YouTube</span></a></li>
             <li><a href="<?="https://twitter.com/intent/tweet?url=".urlencode(is_single() ? get_permalink() : home_url())."&text=".urlencode(is_single() ? get_the_title() : get_bloginfo('name').' - '.get_bloginfo('description')) ?>" rel="noopener noreferrer" target="_blank" class="p-3 bg-dark text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-twitter"></i> <span id="social-media-name">Twitter (X)</span></a></li>
         </ul> -->
-        <div class="container">
-            <main id="content" role="main">
-                <?php if (is_active_sidebar('top-ads-widget')) : ?>
-                    <?php dynamic_sidebar('top-ads-widget') ?>
-                <?php endif; ?>
