@@ -1,4 +1,4 @@
-<article class="col-md-12 card-secondary d-flex align-items-center text-decoration-none text-dark border-bottom pb-2 <?= esc_attr($args["mb"] ? "mb-4" : "") ?>" style="height: 130px;" itemscope itemtype="https://schema.org/NewsArticle">
+<div class="col-md-12 card-secondary d-flex align-items-center text-decoration-none text-dark border-bottom pb-2 <?= esc_attr($args["mb"] ? "mb-4" : "") ?>" style="height: 130px;">
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: center;">
         <?php if (has_post_thumbnail()) : ?>
             <a href="<?php the_permalink(); ?>" class="d-block overflow-hidden rounded-1 p-0" style="height: 100px; min-width: 150px; grid-column: span 1 / span 1;" aria-label="Baca selengkapnya tentang <?php the_title_attribute(); ?>">
@@ -21,4 +21,4 @@
     <meta itemprop="url" content="<?php the_permalink(); ?>">
     <meta itemprop="author" content="<?php the_author(); ?>">
     <meta itemprop="publisher" content="<?php bloginfo('name'); ?>">
-</article>
+</div>

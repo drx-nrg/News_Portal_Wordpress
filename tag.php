@@ -1,14 +1,23 @@
 <?php get_header(); ?>
-<main id="primary" class="site-main" itemscope itemtype="https://schema.org/CollectionPage">
+<main id="content" class="site-main" itemscope itemtype="https://schema.org/CollectionPage">
     <div class="container mt-4" style="padding: 0 1.5rem !important;">
+        <?php get_template_part(
+            'breadcrumbs', 
+            null, 
+            array(
+                'type' => 'category', 
+                'category' => get_queried_object(), 
+                'title' => null
+                )
+            ); ?>
         <header class="header mb-3" class="page-header">
-            <h1 class="fs-2 fw-semibold tag-title" itemprop="name"><?= get_the_archive_title() ?></h1>
+            <h1 id="tag-title" class="fs-2 fw-semibold" itemprop="name"><?= get_the_archive_title() ?></h1>
             <?php if (get_the_archive_description()) : ?>
-                <p class="category-description tag-description" itemprop="description"><?= get_the_archive_description(); ?></p>
+                <p id="tag-description" itemprop="description"><?= get_the_archive_description(); ?></p>
             <?php endif; ?>
         </header>
 
-        <section id="category-news tag-news" itemscope itemtype="https://schema.org/NewsMediaOrganization">
+        <section id="tag-news" itemscope itemtype="https://schema.org/NewsMediaOrganization">
             <div class="row d-flex flex-row gap-5 gap-md-0">
                 <div class="col-md-8 d-flex flex-column align-items-center px-0">
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -27,8 +36,8 @@
                     <?php else: ?>
                         <div class="d-flex flex-column gap-2 gap-md-3">
                             <div class="main-text d-flex flex-column align-items-center">
-                                <h1 class="fw-semibold fs-1 mt-5 text-dark">Not Found</h1>
-                                <p class="text-secondary">Berita dengan kategori <?= single_cat_title() ?> tidak ditemukan.</p>
+                                <h1 class="fw-semibold fs-1 mt-5 text-dark fw-semibold">404</h1>
+                                <p class="text-secondary">Berita dengan tag <?= trim(explode(':', get_the_archive_title())[1]) ?> tidak ditemukan.</p>
                             </div>
                             <?php get_search_form(['is_white' => true]) ?>
                         </div>

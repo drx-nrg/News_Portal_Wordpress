@@ -38,13 +38,13 @@ if ( post_password_required() ) {
 
     <?php
     comment_form( array(
-        'class_form'           => 'comment-form', // Wrap form with .comment-form class
+        'class_form'           => 'comment-form mb-5', // Wrap form with .comment-form class
         'title_reply'          => __( 'Tinggalkan Komentar', 'newslify' ),
         'title_reply_before'   => '<h2 class="comment-reply-title fw-semibold">',
         'title_reply_after'    => '</h2>',
         'comment_field'        => '<div class="form-group"><label for="comment" class="form-label">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" class="form-control" rows="4" aria-required="true"></textarea></div>',
         'fields'               => array(
-            'author' => '<div class="form-group"><label for="author" class="form-label">' . __( 'Name', 'newslify' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="author" name="author" type="text" class="form-control" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></div>',
+            'author' => '<div class="form-group"><label for="author" class="form-label">' . __( 'Name', 'newslify' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="author" name="author" type="text" class="form-control bg-white" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" /></div>',
             'email'  => '<div class="form-group"><label for="email" class="form-label">' . __( 'Email', 'newslify' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) . '<input id="email" name="email" type="email" class="form-control" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" aria-required="true" /></div>',
             'url'    => '<div class="form-group"><label for="url" class="form-label">' . __( 'Website', 'newslify' ) . '</label><input id="url" name="url" type="url" class="form-control" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>',
         ),

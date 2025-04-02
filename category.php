@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<main id="primary" class="site-main" itemscope itemtype="https://schema.org/CollectionPage">
+<main id="content" class="site-main" itemscope itemtype="https://schema.org/CollectionPage">
     <div class="container mt-4" style="padding: 0 1.5rem !important;">
         <header class="header mb-3" class="page-header">
             <?php get_template_part(
@@ -11,7 +11,7 @@
                     'title' => null
                     )
                 ); ?>
-            <h1 class="fs-2 fw-semibold"><?= single_cat_title(null, false) ?></h1>
+            <h1 class="fs-2 fw-semibold" itemprop="headline"><?= single_cat_title(null, false) ?></h1>
             <?php if (category_description()) : ?>
                 <p class="category-description" itemprop="description"><?= category_description(); ?></p>
             <?php endif; ?>
@@ -23,7 +23,7 @@
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                         <?php get_template_part('entry', 'summary') ?>
                     <?php endwhile; ?>
-                     <!-- Navigasi Halaman -->
+                    <!-- Navigasi Halaman -->
                     <nav class="pagination" aria-label="Navigasi Halaman">
                         <?php the_posts_pagination([
                             'mid_size'  => 2,

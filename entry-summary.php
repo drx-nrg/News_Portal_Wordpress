@@ -23,7 +23,16 @@
             </a>
         </h2>
         <div class="entry-meta d-flex flex-wrap align-items-center text-dark mb-2 fs-md-5">
-            <span class="me-2 text-secondary fw-semibold d-none d-md-block" itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="<?= get_author_posts_url(get_the_author_meta('ID')) ?>" class="text-decoration-none text-dark" itemprop="url"><span itemprop="name"><?= get_the_author() ?></span></a></span>
+            <span class="me-2 d-none d-md-block">
+                Oleh 
+                <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <a href="<?= get_author_posts_url(get_the_author_meta('ID')) ?>" 
+                    class="text-decoration-none text-dark fw-semibold" 
+                    itemprop="url">
+                        <span itemprop="name"><?= get_the_author() ?></span>
+                    </a>
+                </span>
+            </span>
             <span class="me-2 d-none d-md-block fs-7">-</span>
             <time itemprop="datePublished" class="me-2" datetime="<?= get_the_date('c') ?>"><?php echo diffForHumans(strtotime(get_the_date('c'))) ?></time>
         </div>

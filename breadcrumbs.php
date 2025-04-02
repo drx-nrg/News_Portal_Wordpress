@@ -1,5 +1,5 @@
-<nav aria-label="breadcrumb" class="text-dark d-flex align-items-center gap-2" itemscope itemtype="http://schema.org/BreadcrumbList">
-    <ol class="breadcrumb d-flex gap-2">
+<nav aria-label="breadcrumb" class="text-dark d-flex align-items-center gap-2">
+    <ol class="breadcrumb d-flex gap-2" itemscope itemtype="https://schema.org/BreadcrumbList">
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
             <a href="<?= home_url() ?>" class="text-decoration-none text-dark" itemprop="item">
                 <span itemprop="name">Beranda</span>

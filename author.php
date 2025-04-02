@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<section id="author" itemscope itemtype="https://schema.org/ProfilePage">
+<main id="content" class="site-main" itemscope itemtype="https://schema.org/ProfilePage">
     <div class="container" style="padding: 0 1.5rem !important;">
         <header class="header">
         <?php get_template_part(
@@ -51,6 +51,6 @@
             </aside>
         </div>
     </div>
-</section>
+</main>
 <?php get_template_part('nav', 'below'); ?>
 <?php get_footer(); ?>

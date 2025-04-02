@@ -46,12 +46,10 @@ function blankslate_enqueue()
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
     wp_enqueue_script('jquery');
 
-    wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
-    wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
-
-    if(get_theme_mod('is_active_slider', true))
+    if(is_home())
     {
-        
+        wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
+        wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");
     }
 }
 add_filter('document_title_separator', 'blankslate_document_title_separator');
@@ -68,20 +66,6 @@ function blankslate_title($title)
     } else {
         return wp_kses_post($title);
     }
-}
-function blankslate_schema_type()
-{
-    $schema = 'https://schema.org/';
-    if (is_single()) {
-        $type = "Article";
-    } elseif (is_author()) {
-        $type = 'ProfilePage';
-    } elseif (is_search()) {
-        $type = 'SearchResultsPage';
-    } else {
-        $type = 'WebPage';
-    }
-    echo 'itemscope itemtype="' . esc_url($schema) . esc_attr($type) . '"';
 }
 add_filter('nav_menu_link_attributes', 'blankslate_schema_url', 10);
 function blankslate_schema_url($atts)
@@ -266,7 +250,7 @@ function read_too_shortcode($atts){
         wp_reset_postdata();
     }
 
-    return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
+    return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 my-3 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
 }
 
 function limit_words($string, $limit){
@@ -352,5 +336,30 @@ function display_full_content_on_single_page() {
     // Reset post data
     wp_reset_postdata();
 }
+
+add_filter ( 'wpseo_schema_webpage' , function($data){
+    if(isset($data['datePublished']))
+    {
+        $data['datePublished'] = wp_date('c', get_post_time('U', true));
+    }
+    if(isset($data['dateModified']))
+    {
+        $data['dateModified'] = wp_date('c', get_post_modified_time('U', true));
+    }
+    return $data;
+}, 11 , 1 ) ;
+
+add_filter ( 'wpseo_schema_newsarticle' , function($data){
+    if(isset($data['datePublished']))
+    {
+        $data['datePublished'] = wp_date('c', get_post_time('U', true));
+    }
+    if(isset($data['dateModified']))
+    {
+        $data['dateModified'] = wp_date('c', get_post_modified_time('U', true));
+    }
+    return $data;
+}, 11 , 1 ) ;
+
 
 ?>

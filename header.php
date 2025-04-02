@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php blankslate_schema_type(); ?>>
+<html <?php language_attributes(); ?>>
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
@@ -10,40 +10,474 @@
     <?php wp_head(); ?>
 </head>
 <style type="text/css">
-    *{
+    * {
         font-family: Titillium Web;
     }
-    #container,.navigation-top{width:100%}.menu-item a,.more-link,.page-number,.post-content a,.post-page-numbers,.tag-cloud-link,a[rel='author external'],a[rel=next],a[rel=prev]{text-decoration:none}body{font-family:'Titillium Web'}#container{height:fit-content;padding:0 5%;box-sizing:border-box}.title{font-weight:bolder}.navbar-custom{background-color:#000}.navbar-custom .navbar-nav .nav-link{color:#fff}.navbar-custom .navbar-nav .nav-link:hover{color:#ddd}.menu-item a{color:#fff;font-weight:600}#search-modal-btn,.menu-item{cursor:pointer}.menu-item-has-children{display:flex;align-items:center;gap:5px;position:relative}.menu-item-has-children .sub-menu{position:absolute;top:0;left:50px;list-style:none inside;background-color:#212529;padding:10px 20px;border-radius:8px;opacity:0;pointer-events:none;transition:.3s}.sub-menu-active{top:30px!important;pointer-events:auto!important;opacity:1!important}.widget-title{font-size:1.2rem}.xoxo{display:flex;flex-direction:column;gap:1.6rem;list-style:none!important;font-family:Poppins sans-serif;padding:0}#sidebar{position:sticky;top:5rem}#sidebar .widget-container{padding:20px;box-shadow:rgba(99,99,99,.2) 0 2px 4px 0;list-style:none!important;font-family:Poppins!important}#sidebar .widget-container a{color:#000;text-decoration:none;font-weight:400;display:block;margin-bottom:10px}#sidebar .widget-container li{list-style:none}.comment-author .avatar{width:80px;height:80px;border-radius:50%}.comment-body{display:flex;flex-direction:column}.comment-author-name{font-weight:700;margin-bottom:5px}.comment-date{font-size:.9em;color:#888}.comment-content{margin-top:10px}.wp-post-image{width:100%;height:100%;object-fit:cover;transition:.5s;margin-bottom:0!important}.site-footer{background-color:#333;color:#fff}.footer-widget{padding:20px;margin-bottom:1.6rem;border-radius:5px;font-family:Poppins,sans-serif}.footer-widget-title{font-weight:700;margin-bottom:10px;color:#fff}.comment-form{font-family:Inter,sans-serif}.comment-form .form-group{margin-bottom:1.5rem}.comment-form .form-label{font-weight:700}.comment-form .form-control{font-size:1rem;padding:.75rem;border-radius:.25rem}.comment-form .btn{font-size:1rem;padding:.5rem 1rem;border-radius:.25rem}.page-links{display:flex;align-items:center;gap:15px}.page-number{display:block;width:40px;height:40px;display:flex;justify-content:center;align-items:center;padding:10px;border-radius:50%;background-color:#000;color:#fff}.current .page-number{background-color:#198754!important;color:#fff!important}.card{border-radius:.5rem;overflow:hidden;padding-bottom:0!important}.card:hover .wp-post-image,article[class=col-md-12] .card-title:hover article[class=col-md-12] .wp-post-image{transform:scale(1.2)}.card-img-overlay{width:100%;height:102%;object-fit:cover;top:0;left:0;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.5));color:#fff;padding:1rem;transition:.5s;margin-bottom:0!important}.card-title{font-size:1.25rem;font-weight:600}.card-text{margin-bottom:1rem}.card a.btn{border-radius:50px;padding:.5rem 1rem}.category-title{position:relative;margin-bottom:0}.green-line{display:block;width:100%;height:4px;background-color:var(--primary);opacity:1!important;margin:0 0 10px!important;border:none}.card-title:hover,.post-title:hover{text-decoration:underline!important}.social-icon{display:block;color:#000;transition:.3s}.social-icon:hover{transform:translate(0,-5px)}a[rel=next],a[rel=prev]{font-size:1.2rem}a[rel='author external']{color:#000}@keyframes moveSide{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,0)}}.more-link:hover{filter:brightness(120%);animation:.5s infinite moveSide}.navbar-container{max-width:100%;overflow-x:scroll}.navbar-container::-webkit-scrollbar{display:none}.navbar-nav{min-width:max-content}.fixed-header{position:absolute;top:0;left:0;z-index:999}.relative{position:relative}::-webkit-scrollbar-thumb:hover{background-color:#198754}::-webkit-scrollbar-track{background-color:#f1f1f1}.latest-swiper-container .swiper-slide{height:200px!important}.top-bar{position:fixed}.wp-block-tag-cloud{display:flex;flex-wrap:wrap}.tag-cloud-link{display:block!important;max-width:fit-content;padding:10px;border-radius:4px;font-weight:500!important;opacity:1;margin:0;color:#000!important;font-size:16px!important}.tag-cloud-link::before{content:"#";color:var(--success)}.post-content img{max-width:100%}#menu-page-menu li a{color:#000;font-weight:600}#menu-menu-2 li a{font-weight:600;color:#fff;font-size:1.2rem}.posts-navigation{display:none}.main-menu{position:sticky;top:0;z-index:999;background-color:var(--primary)!important}form[role=search]{display:flex!important;gap:5px;width:100%}form[role=search] label{display:flex;width:100%}form[role=search] label input{display:block;flex:1 1 0}.nav-next a,.nav-previous a{color:#888;text-transform:uppercase;font-size:.9rem}
-    :root{
-        --primary: <?php echo get_theme_mod('primary_color', '#ff7700'); ?>;
+
+    #container,
+    .navigation-top {
+        width: 100%;
     }
-    #menu-overflow{
-        overflow-y: visible !important;
+
+    .menu-item a,
+    .more-link,
+    .page-number,
+    .post-content a,
+    .post-page-numbers,
+    .tag-cloud-link,
+    a[rel="author external"],
+    a[rel="next"],
+    a[rel="prev"] {
+        text-decoration: none;
     }
-    #menu-overflow::-webkit-scrollbar{
-        display: block !important;
+
+    body {
+        font-family: "Titillium Web";
     }
-    #search-modal-btn{
+
+    #container {
+        height: fit-content;
+        padding: 0 5%;
+        box-sizing: border-box;
+    }
+
+    .title {
+        font-weight: bolder;
+    }
+
+    .navbar-custom {
+        background-color: #000;
+    }
+
+    .navbar-custom .navbar-nav .nav-link {
+        color: #fff;
+    }
+
+    .navbar-custom .navbar-nav .nav-link:hover {
+        color: #ddd;
+    }
+
+    .menu-item a {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    #search-modal-btn,
+    .menu-item {
         cursor: pointer;
     }
-    .menu-item{
+
+    .menu-item-has-children {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        position: relative;
+    }
+
+    .menu-item-has-children .sub-menu {
+        position: absolute;
+        top: 0;
+        left: 50px;
+        list-style: none inside;
+        background-color: #212529;
+        padding: 10px 20px;
+        border-radius: 8px;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+    }
+
+    .sub-menu-active {
+        top: 30px !important;
+        pointer-events: auto !important;
+        opacity: 1 !important;
+    }
+
+    .widget-title {
+        font-size: 1.2rem;
+    }
+
+    .xoxo {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        list-style: none !important;
+        font-family: Poppins sans-serif;
+        padding: 0;
+    }
+
+    #sidebar {
+        position: sticky;
+        top: 5rem;
+    }
+
+    #sidebar .widget-container {
+        padding: 20px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0 2px 4px 0;
+        list-style: none !important;
+        font-family: Poppins !important;
+    }
+
+    #sidebar .widget-container a {
+        color: #000;
+        text-decoration: none;
+        font-weight: 400;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #sidebar .widget-container li {
+        list-style: none;
+    }
+
+    .comment-author .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    .comment-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment-author-name {
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .comment-date {
+        font-size: 0.9em;
+        color: #888;
+    }
+
+    .comment-content {
+        margin-top: 10px;
+    }
+
+    .wp-post-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+        margin-bottom: 0 !important;
+    }
+
+    .site-footer {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .footer-widget {
+        padding: 20px;
+        margin-bottom: 1.6rem;
+        border-radius: 5px;
+        font-family: Poppins, sans-serif;
+    }
+
+    .footer-widget-title {
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .comment-form {
+        font-family: Inter, sans-serif;
+    }
+
+    .comment-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .comment-form .form-label {
+        font-weight: 700;
+    }
+
+    .comment-form .form-control {
+        font-size: 1rem;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+    .comment-form .btn {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+    }
+
+    .page-links {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .page-number {
+        display: block;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #000;
+        color: #fff;
+        border: 1px solid var(--primary);
+        font-weight: bold;
+    }
+
+    .post-page-numbers.current .page-number {
+        background-color: var(--primary) !important;
+        color: #fff !important;
+    }
+
+    .post-page-numbers:not(.current) .page-number {
+        color: var(--primary) !important;
+    }
+
+    .card {
+        border-radius: 0.5rem;
+        overflow: hidden;
+        padding-bottom: 0 !important;
+    }
+
+    .card:hover .wp-post-image,
+    article[class="col-md-12"] .card-title:hover article[class="col-md-12"] .wp-post-image {
+        transform: scale(1.2);
+    }
+
+    .card-img-overlay {
+        width: 100%;
+        height: 102%;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+        color: #fff;
+        padding: 1rem;
+        transition: 0.5s;
+        margin-bottom: 0 !important;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .card-text {
+        margin-bottom: 1rem;
+    }
+
+    .card a.btn {
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+    }
+
+    .category-title {
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .green-line {
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: var(--primary);
+        opacity: 1 !important;
+        margin: 0 0 10px !important;
+        border: none;
+    }
+
+    .card-title:hover,
+    .post-title:hover {
+        text-decoration: underline !important;
+    }
+
+    .social-icon {
+        display: block;
+        color: #000;
+        transition: 0.3s;
+    }
+
+    .social-icon:hover {
+        transform: translate(0, -5px);
+    }
+
+    a[rel="next"],
+    a[rel="prev"] {
+        font-size: 1.2rem;
+    }
+
+    a[rel="author external"] {
+        color: #000;
+    }
+
+    @keyframes moveSide {
+
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+
+        50% {
+            transform: translate(10px, 0);
+        }
+    }
+
+    .more-link:hover {
+        filter: brightness(120%);
+        animation: 0.5s infinite moveSide;
+    }
+
+    .navbar-container {
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+
+    .navbar-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navbar-nav {
+        min-width: max-content;
+    }
+
+    .fixed-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #198754;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    .latest-swiper-container .swiper-slide {
+        height: 200px !important;
+    }
+
+    .top-bar {
+        position: fixed;
+    }
+
+    .wp-block-tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tag-cloud-link {
+        display: block !important;
+        max-width: fit-content;
+        padding: 10px;
+        border-radius: 4px;
+        font-weight: 500 !important;
+        opacity: 1;
+        margin: 0;
+        color: #000 !important;
+        font-size: 16px !important;
+    }
+
+    .tag-cloud-link::before {
+        content: "#";
+        color: var(--success);
+    }
+
+    .post-content img {
+        max-width: 100%;
+    }
+
+    #menu-page-menu li a {
+        color: #000;
+        font-weight: 600;
+    }
+
+    #menu-menu-2 li a {
+        font-weight: 600;
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    .posts-navigation {
+        display: none;
+    }
+
+    .main-menu {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: var(--primary) !important;
+    }
+
+    form[role="search"] {
+        display: flex !important;
+        gap: 5px;
+        width: 100%;
+    }
+
+    form[role="search"] label {
+        display: flex;
+        width: 100%;
+    }
+
+    form[role="search"] label input {
+        display: block;
+        flex: 1 1 0;
+    }
+
+    .nav-next a,
+    .nav-previous a {
+        color: #888;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+
+    :root {
+        --primary: <?php echo get_theme_mod('primary_color', '#ff7700'); ?>;
+    }
+
+    #menu-overflow {
+        overflow-y: visible !important;
+    }
+
+    #menu-overflow::-webkit-scrollbar {
+        display: block !important;
+    }
+
+    #search-modal-btn {
+        cursor: pointer;
+    }
+
+    .menu-item {
         display: flex;
         align-items: center;
     }
-    .modals{
+
+    .modals {
         display: flex;
         opacity: 0;
         transform: translate(0px, -50px);
         transition: all .3s ease-out;
     }
-    .modal-active{
+
+    .modal-active {
         opacity: 1;
         transform: translate(0px, 0px);
     }
-    .has-sub-menu{
+
+    .has-sub-menu {
         position: relative;
     }
-    .sub-menu{
+
+    .sub-menu {
         list-style: none;
         position: absolute;
         top: 60px !important;
@@ -51,12 +485,14 @@
         transition: all .2s ease-out;
         opacity: 0;
     }
-    .sub-menu-active{
+
+    .sub-menu-active {
         top: 40px !important;
         pointer-events: auto;
         opacity: 1;
     }
-    .sidebar-wrapper{
+
+    .sidebar-wrapper {
         width: 100%;
         height: 100vh;
         position: fixed;
@@ -67,7 +503,8 @@
         opacity: 0;
         pointer-events: none;
     }
-    .sidebar-wrapper::before{
+
+    .sidebar-wrapper::before {
         content: "";
         transition: all .4s ease-in-out;
         width: 100%;
@@ -75,11 +512,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(5px);
         z-index: 9998;
     }
-    .category-menu-sidebar{
+
+    .category-menu-sidebar {
         width: 400px;
         height: 100vh;
         padding: 50px;
@@ -87,7 +525,8 @@
         transition: all .3s ease;
         transform: translate(400px, 0px);
     }
-    .sub-menu-sidebar{
+
+    .sub-menu-sidebar {
         /* position: absolute; */
         /* transform: translateY(-50px); */
         transition: all .2s ease;
@@ -101,45 +540,55 @@
         transform: scaleY(0%);
         transform-origin: top;
     }
-    .sub-menu-sidebar-active{
+
+    .sub-menu-sidebar-active {
         position: relative;
         transform: scaleY(100%);
         opacity: 1;
         pointer-events: auto;
     }
-    .sub-menu-sidebar li{
+
+    .sub-menu-sidebar li {
         transition: all .2s ease;
     }
-    .nav-item-dropdown-title{
+
+    .nav-item-dropdown-title {
         z-index: 999;
     }
-    .flip-icon{
+
+    .flip-icon {
         transform: rotate(180deg);
     }
-    .active-sidebar{
+
+    .active-sidebar {
         transform: translate(0px, 0px);
         opacity: 1;
         pointer-events: auto;
     }
-    .move-text{
+
+    .move-text {
         animation: moveText .5s linear infinite;
     }
+
     @keyframes moveText {
-        0%{
+        0% {
             transform: translate(0, 0px);
         }
-        50%{
+
+        50% {
             transform: translate(10px, 0px);
         }
-        100%{
+
+        100% {
             transform: translate(0px, 0px);
         }
     }
-    #menu-page-menu li a{
+
+    #menu-page-menu li a {
         position: relative;
     }
 
-    #menu-page-menu li a::after{
+    #menu-page-menu li a::after {
         content: "";
         position: absolute;
         left: 0;
@@ -151,61 +600,88 @@
         transition: all .3s ease;
         transform-origin: left;
     }
-    #menu-page-menu li a:hover::after{
+
+    #menu-page-menu li a:hover::after {
         transform: scaleX(1);
     }
-    #social-media-list li a{
-        width: 55px;
+
+    #social-media-list li a {
+        width: 2rem;
         transition: all .3s ease;
         overflow: hidden;
         white-space: nowrap;
     }
-    #social-media-list li a:hover{
-        width: 200px;
+
+    #social-media-list li a:hover {
+        width: 9rem;
     }
-    a{
+    
+    @media screen and (min-width: 768px)
+    {
+        #social-media-list{
+            top: 50% !important;
+        }
+        #social-media-list li a {
+            width: 3rem;
+            padding: 1rem !important;
+        }
+        #social-media-list li a:hover {
+            width: 200px;
+        }
+    }
+    a {
         text-decoration: none !important;
     }
     /* dark mode light mode */
-    .menu-item a{
+    .menu-item a {
         color: black !important;
         font-weight: 600 !important;
     }
-    .bg-orange{
+
+    .bg-orange {
         background-color: var(--primary) !important;
         color: white !important;
     }
-    .text-orange{
+
+    .text-orange {
         color: var(--primary);
     }
-    .popular-post-card{
+
+    .popular-post-card {
         min-height: 50%;
         max-height: 50%;
     }
+
     @media screen and (max-width: 768px) {
-        .popular-post-card{
+        .popular-post-card {
             min-height: auto;
             max-height: auto;
         }
     }
+
     #sidebar .widget-container ul {
         padding-left: 0;
     }
+
     #sidebar .widget-container li {
         border-bottom: 0.5px solid #dee2e6;
         margin-bottom: 1rem;
     }
-    #sidebar .widget-container li a{
+
+    #sidebar .widget-container li a {
         font-weight: normal;
     }
-    .headline-column-2{
+
+    .headline-column-2 {
         max-height: auto;
     }
+
     @media screen and (min-width: 768px) {
-        .headline-column-2{
+        .headline-column-2 {
             max-height: 400px;
         }
     }
+
     .sr-only {
         position: absolute;
         width: 1px;
@@ -213,32 +689,36 @@
         padding: 0;
         margin: -1px;
         overflow: hidden;
-        clip: rect(0,0,0,0);
+        clip: rect(0, 0, 0, 0);
         border: 0;
     }
-    .swiper-slide{
+
+    .swiper-slide {
         width: 100% !important;
     }
-    @media screen and (max-width: 576px)
-    {
-        .headline-swiper-slide-item{
+
+    @media screen and (max-width: 576px) {
+        .headline-swiper-slide-item {
             max-height: 300px !important;
         }
     }
-    @media screen and (min-width: 576px)
-    {
-        .headline-swiper-slide-item{
+
+    @media screen and (min-width: 576px) {
+        .headline-swiper-slide-item {
             max-height: 400px !important;
         }
     }
-    .pagination, .pagination :is(.nav-links){
+
+    .pagination,
+    .pagination :is(.nav-links) {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1rem;
     }
-    .pagination .page-numbers{
+
+    .pagination .page-numbers {
         width: 50px;
         height: 50px;
         padding: 20px;
@@ -250,11 +730,14 @@
         align-items: center;
         justify-content: center;
         font-weight: bold;
+        font-size: 1.1rem;
     }
-    .pagination :is(.page-numbers.current){
+
+    .pagination :is(.page-numbers.current) {
         background-color: var(--primary);
         color: white;
     }
+
     /* dark mode light mode */
     /* .bg-white{
         background-color: rgba(0,0,0,0.9) !important;
@@ -269,51 +752,56 @@
         background-color: rgba(0,0,0,0.9) !important;
     } */
 </style>
+
 <body <?php body_class('bg-light'); ?>>
     <?php wp_body_open(); ?>
     <div id="wrapper" class="hfeed">
         <div class="sidebar-wrapper">
             <div class="category-menu-sidebar bg-white">
-                <button id="toggle-sidebar-btn" 
-                        class="bi bi-x text-dark fs-1" 
-                        style="position: absolute; top: 20px; right: 20px; cursor: pointer; border: none; background-color: transparent;"
-                        aria-label="Close sidebar" 
-                        aria-controls="sidebar" 
-                        aria-expanded="true">
-                </button>                
-                <h2 class="fs-2 text-dark fw-semibold mb-3 d-flex flex-row gap-2 align-items-center"><svg class="fs-3 text-dark" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.78 10.37A1 1 0 0 0 22 10h-2V9a3 3 0 0 0-3-3h-6.28l-.32-1a3 3 0 0 0-2.84-2H4a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14.4a3 3 0 0 0 2.92-2.35L23 11.22a1 1 0 0 0-.22-.85M5.37 18.22a1 1 0 0 1-1 .78H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3.56a1 1 0 0 1 1 .68l.54 1.64A1 1 0 0 0 10 8h7a1 1 0 0 1 1 1v1H8a1 1 0 0 0-1 .78Zm14 0a1 1 0 0 1-1 .78H7.21a1.4 1.4 0 0 0 .11-.35L8.8 12h12Z"/></svg> <?= __("Menu Kategori", "newslify") ?></h2>
+                <button id="toggle-sidebar-btn"
+                    class="bi bi-x text-dark fs-1"
+                    style="position: absolute; top: 20px; right: 20px; cursor: pointer; border: none; background-color: transparent;"
+                    aria-label="Close sidebar"
+                    aria-controls="sidebar"
+                    aria-expanded="true">
+                </button>
+                <h2 class="fs-2 text-dark fw-semibold mb-3 d-flex flex-row gap-2 align-items-center"><svg class="fs-3 text-dark" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M22.78 10.37A1 1 0 0 0 22 10h-2V9a3 3 0 0 0-3-3h-6.28l-.32-1a3 3 0 0 0-2.84-2H4a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14.4a3 3 0 0 0 2.92-2.35L23 11.22a1 1 0 0 0-.22-.85M5.37 18.22a1 1 0 0 1-1 .78H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3.56a1 1 0 0 1 1 .68l.54 1.64A1 1 0 0 0 10 8h7a1 1 0 0 1 1 1v1H8a1 1 0 0 0-1 .78Zm14 0a1 1 0 0 1-1 .78H7.21a1.4 1.4 0 0 0 .11-.35L8.8 12h12Z" />
+                    </svg> <?= __("Menu Kategori", "newslify") ?></h2>
                 <nav class="container" role="navigation">
                     <?php
                     $menu_id = get_menu_id('main-menu');
                     $menu_items = wp_get_nav_menu_items($menu_id);
 
-                    if( !empty($menu_items) && is_array($menu_items) ):
+                    if (!empty($menu_items) && is_array($menu_items)):
                     ?>
                         <ul class="navbar-nav d-flex flex-col gap-2 w-100">
-                            <?php foreach( $menu_items as $menu_item ): ?>
-                                <?php if( !$menu_item->menu_item_parent ): ?>
-                                    <?php  
-                                        $child_menu_items = get_child_menu_items($menu_items, $menu_item->ID);
-                                        $has_children = !empty($child_menu_items) && is_array($child_menu_items);    
-                                        
-                                        if( !$has_children ):
+                            <?php foreach ($menu_items as $menu_item): ?>
+                                <?php if (!$menu_item->menu_item_parent): ?>
+                                    <?php
+                                    $child_menu_items = get_child_menu_items($menu_items, $menu_item->ID);
+                                    $has_children = !empty($child_menu_items) && is_array($child_menu_items);
+
+                                    if (!$has_children):
                                     ?>
                                         <li class="nav-item active d-flex flex-row gap-2 align-items-center" style="cursor: pointer;">
                                             <i class="bi bi-play-fill text-dark"></i>
-                                            <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>" ><?= esc_html($menu_item->title) ?></a>
+                                            <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>"><?= esc_html($menu_item->title) ?></a>
                                         </li>
                                     <?php else: ?>
                                         <li class="nav-item active has-sub-menu-sidebar d-flex flex-column gap-2" style="cursor: pointer;">
                                             <!-- <svg class="text-dark fs-3" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m14.83 11.29l-4.24-4.24a1 1 0 0 0-1.42 0a1 1 0 0 0 0 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41a1 1 0 0 0 .71.29a1 1 0 0 0 .71-.29l4.24-4.24a1 1 0 0 0 0-1.42"/></svg> -->
                                             <div class="nav-item-dropdown-title w-100 bg-white d-flex flex-row align-items-center gap-2">
                                                 <i class="bi bi-play-fill text-dark"></i>
-                                                <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>" ><?= esc_html($menu_item->title) ?></a>
-                                                <svg class="sub-menu-icon text-dark fs-3" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42"/></svg>
+                                                <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($menu_item->url) ?>" target="<?= esc_attr($menu_item->target) ?>"><?= esc_html($menu_item->title) ?></a>
+                                                <svg class="sub-menu-icon text-dark fs-3" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42" />
+                                                </svg>
                                             </div>
                                             <ul class="sub-menu-sidebar py-0" style="width: max-content; list-style: none;">
-                                                <?php  foreach( $child_menu_items as $item ): ?>
+                                                <?php foreach ($child_menu_items as $item): ?>
                                                     <li class="nav-item">
-                                                        <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($item->url) ?>" target="<?= esc_attr($item->target) ?>" ><?= esc_html($item->title) ?></a>
+                                                        <a class="nav-link active text-decoration-none text-dark fs-5 fw-semibold" aria-current="page" href="<?= esc_url($item->url) ?>" target="<?= esc_attr($item->target) ?>"><?= esc_html($item->title) ?></a>
                                                     </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -342,10 +830,24 @@
             </div>
         </div>
         <!-- Tombol untuk sharing artikel -->
-        <!-- <ul class="social-media p-0 m-0 <?= is_home() ? "d-none" : "d-flex" ?> flex-column overflow-hidden rounded-3" id="social-media-list" style="list-style: none; list-style-position: inside; position: fixed; top: 20%; z-index: 999">
-            <li><a href="https://instagram.com" class="p-3 text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold" style="background-color: rgb(255, 0, 123);"><i class="bi bi-instagram"></i> <span id="social-media-name">Instagram</span></a></li>
-            <li><a href="<?="https://www.facebook.com/sharer/sharer.php?u=".urlencode(is_single() ? get_permalink() : home_url()) ?>" target="_blank" rel="noopener noreferrer" class="p-3 bg-primary text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-facebook"></i> <span id="social-media-name">Facebook</span></a></li>
-            <li><a href="https://api.whatsapp.com/send?text=<?= urlencode(is_single() ? get_the_title() . ' ' . get_permalink() : get_bloginfo('name').' '.home_url()); ?>" target="_blank" rel="noopener noreferrer" class="p-3 text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold" style="background-color: #1b995e;"><i class="bi bi-whatsapp"></i> <span id="social-media-name">WhatApp</span></a></li>
-            <li><a href="https://youtube.com" class="p-3 bg-danger text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-youtube"></i> <span id="social-media-name">YouTube</span></a></li>
-            <li><a href="<?="https://twitter.com/intent/tweet?url=".urlencode(is_single() ? get_permalink() : home_url())."&text=".urlencode(is_single() ? get_the_title() : get_bloginfo('name').' - '.get_bloginfo('description')) ?>" rel="noopener noreferrer" target="_blank" class="p-3 bg-dark text-white fs-4 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-twitter"></i> <span id="social-media-name">Twitter (X)</span></a></li>
-        </ul> -->
+        <?php if (1 == 2): ?>
+            <label for="permalink-share" style="position: absolute; opacity: 0;">Site Link</label>
+            <input type="text" id="permalink-share" style="position: absolute; opacity: 0;" class="permalink-share" value="<?= is_home() ? home_url() : get_permalink() ?>">
+            <ul class="social-media p-0 m-0 flex-column" id="social-media-list" style="list-style: none; list-style-position: inside; position: fixed; top: 70%; z-index: 999; transform: translateY(-50%);">
+                <li>
+                    <a href="https://instagram.com" class="p-2 text-white fs-6 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold" style="background-color: rgb(255, 0, 123);"><i class="bi bi-instagram"></i> <span id="social-media-name">Instagram</span></a>
+                </li>
+                <li>
+                    <a href="<?= "https://www.facebook.com/sharer/sharer.php?u=" . urlencode(is_single() ? get_permalink() : home_url()) ?>" target="_blank" rel="noopener noreferrer" class="p-2 bg-primary text-white fs-6 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-facebook"></i> <span id="social-media-name">Facebook</span></a>
+                </li>
+                <li>
+                    <a href="https://api.whatsapp.com/send?text=<?= urlencode(is_single() ? get_the_title() . ' ' . get_permalink() : get_bloginfo('name') . ' ' . home_url()); ?>" target="_blank" rel="noopener noreferrer" class="p-2 text-white fs-6 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold" style="background-color: #1b995e;"><i class="bi bi-whatsapp"></i> <span id="social-media-name">WhatApp</span></a>
+                </li>
+                <li>
+                    <a href="<?= "https://twitter.com/intent/tweet?url=" . urlencode(is_single() ? get_permalink() : home_url()) . "&text=" . urlencode(is_single() ? get_the_title() : get_bloginfo('name') . ' - ' . get_bloginfo('description')) ?>" rel="noopener noreferrer" target="_blank" class="p-2 bg-dark text-white fs-6 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold"><i class="bi bi-twitter"></i> <span id="social-media-name">Twitter (X)</span></a>
+                </li>
+                <li>
+                    <a id="copyBtn" class="p-2 bg-secondary text-white fs-6 d-flex flex-row align-items-center text-decoration-none gap-3 fw-semibold" style="cursor: pointer;"><i class="bi bi-paperclip"></i> <span id="social-media-name">Copy To Clipboard</span></a>
+                </li>
+            </ul>
+        <?php endif; ?>

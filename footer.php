@@ -1,8 +1,11 @@
 <footer style="position: relative;" class="mt-5 site-footer px-5 py-5 bg-white text-dark shadow-sm">
     <div class="container" style="z-index: 20;">
-        <div class="row">
+        <div class="row gap-2">
             <div class="col-12 text-center">
                 <p class="mb-0 fs-6 fs-lg-6">Copyright &copy; <?php echo date('Y'); ?> <?= get_theme_mod('site-title', get_bloginfo('name')) ?> All rights reserved.</p>
+            </div>
+            <div class="col-12 text-center">
+                <p class="mb-0 fs-6 fs-lg-6">Contact: <?= get_theme_mod('contact_email', 'kabaragribisnis@gmail.com') ?></p>
             </div>
         </div>
     </div>
@@ -182,7 +185,13 @@
         }
     });
 
-
+    // document.getElementById('copyBtn').onclick = () => {
+    //     const copyText = document.querySelector('.permalink-share');
+    //     copyText.select();
+    //     copyText.setSelectionRange(0, 99999)
+    //     document.execCommand('copy');
+    //     alert("Link berhasil disalin!")
+    // }
 </script>
 </body>
 

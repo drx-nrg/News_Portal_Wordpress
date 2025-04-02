@@ -4,9 +4,11 @@
         if ($args["category_post_query"]->have_posts()) : while ($args["category_post_query"]->have_posts()) : $args["category_post_query"]->the_post()
     ?>
             <?php if ($index == 0) : ?>
-                <div class="col-lg-6">
+                <div class="col-lg-6 border-bottom">
                     <div class="row">
-                        <?php get_template_part('card', 'head'); ?>
+                        <?php get_template_part('card', 'head', [
+                            'border_bottom' => false
+                        ]); ?>
                     </div>
                 </div>
             <?php endif; ?>

@@ -108,6 +108,17 @@
             'type' => 'text'
         ));
 
+        $wp_customize->add_setting('contact_email', array(
+            'default' => "kabaragribisnis@gmail.com",
+            'transport' => 'refresh'
+        ));
+
+        $wp_customize->add_control('contact_email', array(
+            'label' => 'Contact Email',
+            'section' => 'site_information',
+            'type' => 'text'
+        ));
+
         // Top Slider
         $wp_customize->add_section('slider_setting', array(
             'title' => "Slider Configuration",
