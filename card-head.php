@@ -30,16 +30,12 @@
             </div>
             
             <!-- Title -->
-            <h2 class="card-title fs-md-5 fs-lg-4" itemprop="headline">
+            <h3 class="card-title fs-md-5 fs-lg-4" itemprop="headline">
                 <a href="<?php the_permalink(); ?>" class="text-dark text-decoration-none">
                     <?php the_title(); ?>
                 </a>
-            </h2>
+            </h3>
 
-            <!-- Excerpt -->
-            <p class="text-dark mt-2" itemprop="description">
-                <?= wp_trim_words(get_the_excerpt(), 10, '...'); ?>
-            </p>
         </div>
     </div>
 

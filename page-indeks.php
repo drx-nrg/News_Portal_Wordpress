@@ -8,13 +8,13 @@ get_header()
     <div class="container mt-4" style="padding: 0 1.5rem !important;">
         <div class="row">
             <div class="col-12">
-                <h1 class="fw-semibold fs-2">Indeks Berita</h1>
+                <h1 class="fw-semibold fs-2 text-dark">Indeks Berita</h1>
                 <p class="text-secondary">Cari berita melalui waktu terbit dan kanal tertentu</p>
             </div>
         </div>
         <form action="" method="get" class="row gap-3 gap-md-0">
             <div class="col-md-4">
-                <input type="date" name="date" id="date" class="form-control" value="<?= $_GET["date"] ?? date('Y-m-d') ?>">
+                <input type="date" name="date" id="date" class="form-control bg-white text-dark" value="<?= $_GET["date"] ?? date('Y-m-d') ?>">
             </div>
             <div class="col-md-4">
                 <?php $categories = get_categories(array(
@@ -22,7 +22,7 @@ get_header()
                     'hide_empty' => false
                 ));
                 ?>
-                <select name="category" id="category" class="form-select" value="<?= $_GET["category"] ?? $categories[0]->slug ?>">
+                <select name="category" id="category" class="form-select bg-white text-dark" value="<?= $_GET["category"] ?? $categories[0]->slug ?>">
                     <?php
                     foreach ($categories as $category) {
                         $selected = $_GET["category"] == $category->slug ? "selected" : "";
@@ -32,7 +32,7 @@ get_header()
                 </select>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-success" type="submit"><i class="bi bi-check-circle"></i> Terapkan</button>
+                <button class="btn bg-orange" type="submit"><i class="bi bi-check-circle"></i> Terapkan</button>
             </div>
         </form>
         <div class="row mt-5">

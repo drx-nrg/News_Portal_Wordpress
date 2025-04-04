@@ -46,7 +46,8 @@ function blankslate_enqueue()
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
     wp_enqueue_script('jquery');
 
-    if(is_home())
+    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
+    if(is_home() && $paged < 2)
     {
         wp_enqueue_style('swiper-css', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css");
         wp_enqueue_script('swiper-js', "https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js");

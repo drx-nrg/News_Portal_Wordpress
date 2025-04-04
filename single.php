@@ -6,6 +6,7 @@
             if (have_posts()) :
                 while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('col-md-8 d-flex flex-column'); ?> itemscope itemtype="https://schema.org/NewsArticle">
+                        <input type="text" class="permalink-share" value="<?php echo get_permalink() ?>" style="position:absolute; top:0; left:0; opacity:0; pointer-events: none;">
                         <header class="entry-header">
                             <?php get_template_part('breadcrumbs', null, array('type' => 'post', 'category' => get_the_category()[0], 'title' => get_the_title())); ?>
                             <div class="post-categories mt-3 mb-3 d-flex justify-content-center gap-3">
@@ -16,13 +17,13 @@
                                 }
                                 ?>
                             </div>
-                            <h1 class="post-title fw-bolder text-center mb-3" itemprop="headline"><?php the_title(); ?></h1>
+                            <h1 class="post-title fw-bolder text-center mb-3 text-dark" itemprop="headline"><?php the_title(); ?></h1>
                             <p class="text-uppercase fw-bold fs-5 text-center text-secondary">Bagikan</p>
                             <div class="social-buttons mb-4 d-flex w-100 justify-content-center" role="complementary">
                                 <a href="<?php echo esc_url('https://instagram.com') ?>" class="btn py-2 me-2 rounded-pill bg-danger" aria-label="Share on Instagram"><i class="bi bi-instagram text-white"></i></a>
                                 <a href="<?php echo esc_url("https://api.whatsapp.com/send?text=".urlencode(get_the_title() . ' ' . get_permalink())); ?>" class="btn py-2 me-2 rounded-pill bg-success" aria-label="Share on WhatsApp"><i class="bi bi-whatsapp text-white"></i></a>
                                 <a href="<?php echo esc_url("https://www.facebook.com/sharer/sharer.php?u=" . urlencode(get_permalink())) ?>" class="btn py-2 me-2 rounded-pill bg-primary" aria-label="Share on Facebook"><i class="bi bi-facebook text-white"></i></a>
-                                <a href="<?php echo esc_url("https://twitter.com/intent/tweet?url=" . urlencode(get_permalink()) . "&text=" . urlencode(get_the_title())) ?>" class="btn py-2 me-2 rounded-pill bg-dark" aria-label="Share on X">
+                                <a href="<?php echo esc_url("https://twitter.com/intent/tweet?url=" . urlencode(get_permalink()) . "&text=" . urlencode(get_the_title())) ?>" class="btn py-2 me-2 rounded-pill bg-dark d-flex align-items-center justify-content-center" aria-label="Share on X">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-twitter-x" viewBox="0 0 16 16">
                                         <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                                     </svg>
@@ -70,7 +71,7 @@
                                 <?php endif;?>
                             </figure>
                         <?php endif; ?>
-                        <div class="mt-3 post-content fs-6 fs-md-5 text-decoration-none" itemprop="articleBody">
+                        <div class="mt-3 post-content fs-6 fs-md-5 text-decoration-none text-dark" itemprop="articleBody">
                             <?php
                             $is_full_content = isset($_GET["all"]);
 
@@ -98,12 +99,12 @@
                             ?>
                         </div>
                         <div class="share-section w-100 mt-3">
-                            <h2 class="fw-semibold fs-5 fs-md-4 mb-3" itemprop="additionalType">Bagikan:</h2>
+                            <h2 class="fw-semibold fs-5 fs-md-4 mb-3 text-dark" itemprop="additionalType">Bagikan:</h2>
                             <div class="social-buttons mb-3 d-flex w-100 justify-content-start" role="complementary">
                                 <a href="https://instagram.com" class="btn py-2 me-2 rounded-pill bg-danger" aria-label="Share on Instagram"><i class="bi bi-instagram text-white"></i></a>
                                 <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(is_single() ? get_the_title() . ' ' . get_permalink() : get_bloginfo('name') . ' ' . home_url()); ?>" class="btn py-2 me-2 rounded-pill bg-success" aria-label="Share on WhatsApp"><i class="bi bi-whatsapp text-white"></i></a>
                                 <a href="<?php echo "https://www.facebook.com/sharer/sharer.php?u=" . urlencode(is_single() ? get_permalink() : home_url()) ?>" class="btn py-2 me-2 rounded-pill bg-primary" aria-label="Share on Facebook"><i class="bi bi-facebook text-white"></i></a>
-                                <a href="<?php echo "https://twitter.com/intent/tweet?url=" . urlencode(is_single() ? get_permalink() : home_url()) . "&text=" . urlencode(is_single() ? get_the_title() : get_bloginfo('name') . ' - ' . get_bloginfo('description')) ?>" class="btn py-2 me-2 rounded-pill bg-dark" aria-label="Share on X">
+                                <a href="<?php echo "https://twitter.com/intent/tweet?url=" . urlencode(is_single() ? get_permalink() : home_url()) . "&text=" . urlencode(is_single() ? get_the_title() : get_bloginfo('name') . ' - ' . get_bloginfo('description')) ?>" class="btn py-2 me-2 rounded-pill bg-dark d-flex align-items-center justify-content-center" aria-label="Share on X">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-twitter-x" viewBox="0 0 16 16">
                                         <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                                     </svg>
@@ -131,7 +132,7 @@
                             comments_template('', true);
                         } ?>
                         <section id="related-articles" class="w-100">
-                            <h2 class="fw-semibold fs-2">Artikel Terkait</h2>
+                            <h2 class="fw-semibold fs-2 text-dark">Artikel Terkait</h2>
                             <p class="text-dark">Artikel yang memiliki jenis dan kategori yang sama</p>
                             <?php
                             $args = array(

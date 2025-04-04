@@ -41,6 +41,14 @@
                 </a>
                 <meta itemprop="position" content="2" />
             </li>
+        <?php elseif($args['type'] == 'archive'): ?>
+            <li><i class="bi bi-chevron-double-right fs-6"></i></li>
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a href="<?= $args['archive_url'] ?>" class="text-decoration-none text-dark" itemprop="item">
+                    <span itemprop="name"><?= esc_html($args["archive_title"]) ?></span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
         <?php endif; ?>
     </ol>
 </nav>

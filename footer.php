@@ -15,15 +15,18 @@
 <?php wp_footer(); ?>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
-        let headlineSwiper = new Swiper('.headline-post-container', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-            },
-            slidesPerView: 1,
-            effect: 'slide',
-            centerInsufficientSlides: true
-        });
+        if(Boolean(<?php echo is_home() ?>) && Number(<?php echo get_query_var('paged') ?? 1 ?>) < 2)
+        {
+            let headlineSwiper = new Swiper('.headline-post-container', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                },
+                slidesPerView: 1,
+                effect: 'slide',
+                a11y: false,
+            });
+        }
         if(Boolean(<?= get_theme_mod('is_active_slider', true) ?>))
         {
             let latestNewsSwiper = new Swiper('.latest-swiper-container', {
@@ -53,6 +56,19 @@
                     }
                 }
             });
+        }
+    });
+
+    window.addEventListener('scroll', function(){
+        if(window.scrollY > 300)
+        { 
+            document.getElementById('backToTopBtn').style.bottom = '2rem';
+            document.getElementById('backToTopBtn').style.opacity = '1';
+        }
+        else
+        {
+            document.getElementById('backToTopBtn').style.bottom = '0rem';
+            document.getElementById('backToTopBtn').style.opacity = '0';
         }
     });
 
@@ -105,10 +121,11 @@
         }
 
         $('#search-modal-btn').click(function(){
-            $('#search-modal').css('display', 'flex');
+            $('#search-modal').css('opacity', '1');
+            $('#search-modal').css('pointer-events', 'auto');
             setTimeout(() => {
                 $('.modals').addClass('modal-active');
-            }, 50)
+            }, 500)
         });
         
     });
@@ -118,8 +135,9 @@
         btn.onclick = () => {
             document.querySelector('.modals').classList.remove('modal-active')
             setTimeout(() => {
-                searchModal.style.display = searchModal.style.display === "flex" ? "none" : "flex";
-            }, 50)
+                searchModal.style.opacity = searchModal.style.opacity == 1 ? 0 : 1;
+                searchModal.style.pointerEvents = searchModal.style.pointerEvents == 'none' ? 'auto' : 'none';
+            }, 500)
         }
     });
 
@@ -185,13 +203,105 @@
         }
     });
 
-    // document.getElementById('copyBtn').onclick = () => {
-    //     const copyText = document.querySelector('.permalink-share');
-    //     copyText.select();
-    //     copyText.setSelectionRange(0, 99999)
-    //     document.execCommand('copy');
-    //     alert("Link berhasil disalin!")
-    // }
+    if(Boolean(<?php echo is_single() ?>))
+    {
+        document.querySelectorAll('#copyBtn').forEach(item => {
+            item.onclick = () => {
+                const copyText = document.querySelector('.permalink-share');
+                copyText.select();
+                copyText.setSelectionRange(0, 99999)
+                document.execCommand('copy');
+                alert("Link berhasil disalin!")
+            }
+        })
+    }
+
+    const changeMode = () => {
+        if(isDarkMode)
+        {
+            let style = document.getElementById('modeStyle');
+            if(!style)
+            {
+                style = document.createElement('style');
+                style.setAttribute('id', 'modeStyle');
+                document.head.appendChild(style);
+            }
+            style.innerHTML = `
+                :root{
+                    --bs-border-color: rgb(113, 118, 123);
+                }
+                .bg-white{
+                    background-color: rgba(0,0,0,0.9) !important;
+                }
+                .text-white{
+                    color: dark !important;
+                }
+                .text-dark{
+                    color: white !important;
+                }
+                .text-secondary{
+                    color: var(--bs-border-color) !important;
+                }
+                .bg-light{
+                    background-color: rgba(0,0,0,0.9) !important;
+                }
+                .menu-item a {
+                    color: white !important;
+                }
+                input::placeholder, textarea::placeholder{
+                    color: var(--bs-border-color) !important;
+                }
+                input{
+                    color: white !important;
+                }
+                a{
+                    color: white !important;
+                }
+                .pagination :is(.page-numbers:not(.current))
+                {
+                    background-color: rgba(0,0,0,0.9) !important;
+                    color: var(--primary) !important;
+                }
+            `;
+        }
+        else
+        {
+            if(document.getElementById('modeStyle'))
+            {
+                document.getElementById('modeStyle').innerHTML = '';
+            }
+        }
+    }
+
+    let isDarkMode = Boolean(JSON.parse(localStorage['isDarkMode'] || 'false'));
+    if(isDarkMode)
+    {
+        document.getElementById('darkMode').style.opacity = '1';
+        document.getElementById('lightMode').style.opacity = '0';
+        changeMode();
+    }
+    else
+    {
+        document.getElementById('darkMode').style.opacity = '0';
+        document.getElementById('lightMode').style.opacity = '1';
+        changeMode();
+    }
+    document.getElementById('toggleMode').onclick = () => {
+        isDarkMode = !isDarkMode;
+        localStorage['isDarkMode'] = isDarkMode;
+        if(isDarkMode)
+        {
+            document.getElementById('darkMode').style.opacity = '1';
+            document.getElementById('lightMode').style.opacity = '0';
+            changeMode()
+        }
+        else
+        {
+            document.getElementById('darkMode').style.opacity = '0';
+            document.getElementById('lightMode').style.opacity = '1';
+            changeMode()
+        }
+    }
 </script>
 </body>
 

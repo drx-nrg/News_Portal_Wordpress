@@ -31,10 +31,10 @@
                 <div class="col-md-8">
                     <section id="post-not-found" class="row">
                         <header class="col-md-12 header text-center">
-                            <h1 class="entry-title fw-semibold" itemprop="name">404</h1>
+                            <h1 class="entry-title fw-semibold text-dark" itemprop="name">404</h1>
                         </header>
                         <div class="col-md-12 d-flex flex-column align-items-center entry-content" itemprop="mainContentOfPage">
-                            <p><?php esc_html_e("Tidak ada hasil ditemukan untuk pencarian ".get_search_query(), 'newslify'); ?></p>
+                            <p class="text-dark"><?php esc_html_e("Tidak ada hasil ditemukan untuk pencarian ".get_search_query(), 'newslify'); ?></p>
                             <div class="row justify-content-center w-100">
                                 <div class="col-md-6">
                                     <?php get_search_form(['is_white' => true]); ?>

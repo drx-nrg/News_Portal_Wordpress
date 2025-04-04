@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 <main id="content" class="site-main" itemscope itemtype="https://schema.org/ProfilePage">
     <div class="container" style="padding: 0 1.5rem !important;">
-        <header class="header">
-        <?php get_template_part(
+        <header class="page-header mb-3" id="page-header">
+            <?php get_template_part(
                 'breadcrumbs', 
                 null, 
                 array(
@@ -25,31 +25,34 @@
             <?php rewind_posts(); ?>
         </header>
         
-        <div class="row d-flex flex-row gap-5 gap-md-0">
-            <div class="col-md-8">
-                <?php if (have_posts()) : ?>
-                    <?php while (have_posts()) : the_post(); ?>
-                        <?php get_template_part('entry', 'summary'); ?>
-                    <?php endwhile; ?>
-                    
-                    <nav class="pagination mt-4" aria-label="Navigasi Halaman">
-                        <?php
-                        the_posts_pagination(array(
-                            'mid_size'  => 2,
-                            'prev_text' => __('«', 'newslify'),
-                            'next_text' => __('»', 'newslify'),
-                        ));
-                        ?>
-                    </nav>
-                    
-                <?php else : ?>
-                    <p class="text-muted">Tidak ada postingan dari penulis ini.</p>
-                <?php endif; ?>
+        <section id="author-posts" aria-labelledby="author-posts-title">
+            <h2 id="author-posts-title" class="visually-hidden">Berita Oleh Author <?php echo esc_html(get_the_author_meta('display_name')) ?></h2>
+            <div class="row d-flex flex-row gap-5 gap-md-0">
+                <div class="col-md-8">
+                    <?php if (have_posts()) : ?>
+                        <?php while (have_posts()) : the_post(); ?>
+                            <?php get_template_part('entry', 'summary'); ?>
+                        <?php endwhile; ?>
+                        
+                        <nav class="pagination mt-4" aria-label="Navigasi Halaman">
+                            <?php
+                            the_posts_pagination(array(
+                                'mid_size'  => 2,
+                                'prev_text' => __('«', 'newslify'),
+                                'next_text' => __('»', 'newslify'),
+                            ));
+                            ?>
+                        </nav>
+                        
+                    <?php else : ?>
+                        <p class="text-muted">Tidak ada postingan dari penulis ini.</p>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-4">
+                    <?php get_sidebar(); ?>
+                </div>
             </div>
-            <aside class="col-md-4" itemscope itemtype="https://schema.org/WPSideBar">
-                <?php get_sidebar(); ?>
-            </aside>
-        </div>
+        </section>
     </div>
 </main>
 <?php get_template_part('nav', 'below'); ?>

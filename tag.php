@@ -11,7 +11,7 @@
                 )
             ); ?>
         <header class="header mb-3" class="page-header">
-            <h1 id="tag-title" class="fs-2 fw-semibold" itemprop="name"><?= get_the_archive_title() ?></h1>
+            <h1 id="tag-title" class="fs-2 fw-semibold text-dark" itemprop="name"><?= get_the_archive_title() ?></h1>
             <?php if (get_the_archive_description()) : ?>
                 <p id="tag-description" itemprop="description"><?= get_the_archive_description(); ?></p>
             <?php endif; ?>

@@ -1,4 +1,4 @@
-<nav class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange shadow-sm">
+<nav class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange" style="box-shadow: rgba(99,99,99,.2) 0 2px 4px 0;">
     <style>
         .scrollbar-nav::-webkit-scrollbar{
             display: none;
@@ -46,11 +46,6 @@
                         <?php endif; ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <li class="d-flex flex-row align-items-center ms-lg-auto">
-                    <button aria-label="Show sidebar menu" id="toggle-sidebar-btn" style="background-color: transparent; border: none; outline: none;" class="d-flex flex-row align-items-center gap-3">
-                        <i class="bi bi-list text-white fs-4 mb-0"></i>
-                    </button>
-                </li>
             </ul>
         <?php endif; ?>
     </div>
