@@ -251,7 +251,7 @@ function read_too_shortcode($atts){
         wp_reset_postdata();
     }
 
-    return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 my-3 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
+    return '<a href="'.$post_link.'" class="d-block text-decoration-none text-dark border-start border-4 border-success ps-3 py-2 my-4 cursor-pointer" style="background-color: rgb(250, 250, 250);"><p class="fw-semibold mb-1 fs-6">Baca Juga:</p><p class="fs-5">'.$post_title.'</p></a>';
 }
 
 function limit_words($string, $limit){
@@ -361,6 +361,4 @@ add_filter ( 'wpseo_schema_newsarticle' , function($data){
     }
     return $data;
 }, 11 , 1 ) ;
-
-
 ?>

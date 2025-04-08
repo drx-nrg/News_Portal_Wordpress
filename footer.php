@@ -18,43 +18,14 @@
         if(Boolean(<?php echo is_home() ?>) && Number(<?php echo get_query_var('paged') ?? 1 ?>) < 2)
         {
             let headlineSwiper = new Swiper('.headline-post-container', {
-                loop: true,
+                speed: 600,
                 autoplay: {
                     delay: 5000,
+                    disableOnInteraction: true
                 },
                 slidesPerView: 1,
                 effect: 'slide',
                 a11y: false,
-            });
-        }
-        if(Boolean(<?= get_theme_mod('is_active_slider', true) ?>))
-        {
-            let latestNewsSwiper = new Swiper('.latest-swiper-container', {
-                loop: true,
-                autoplay: {
-                    delay: 3000
-                },
-                slidesPerView: 3,
-                spaceBetween: 30,
-                effect: 'slide'
-            });
-
-            let oldestNewsSwiper = new Swiper('.oldest-swiper-container', {
-                loop: Boolean(<?= get_theme_mod('is_looping', true) ?>),
-                autoplay: {
-                    delay: Number(<?= get_theme_mod('slider_delay', 3000) ?>)
-                },
-                slidesPerView: 1,
-                spaceBetween: 30,
-                effect: 'slide',
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2
-                    },
-                    1024: {
-                        slidesPerView: 3
-                    }
-                }
             });
         }
     });
@@ -72,8 +43,17 @@
         }
     });
 
-    document.querySelector('.wp-block-search__button').classList.add('btn');
-    document.querySelector('.wp-block-search__button').classList.add('bg-orange');
+    document.getElementById('backToTopBtn').onclick = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    if(document.querySelector('.wp-block-search__button'))
+        document.querySelector('.wp-block-search__button').classList.add('btn');
+    if(document.querySelector('.wp-block-search__button'))
+        document.querySelector('.wp-block-search__button').classList.add('bg-orange');
 
     const dropdownMenus = document.querySelectorAll('.menu-item-has-children')
     const dropdownItems = document.querySelectorAll('.menu-item-has-children .sub-menu');
@@ -97,52 +77,37 @@
         item.classList.add("bg-light");
     });
 
-    // document.querySelectorAll("input[type='button'], button, input[type='submit'").forEach(item => {
-    //     item.classList.add('btn')
-    //     item.classList.add('btn-success')
-    // });
-
     const searchModal = document.getElementById('search-modal');
     const searchModalButton = document.querySelectorAll('#search-modal-btn');
 
     jQuery(document).ready(function($){
-        $(`<li class="menu-item-199"><button class="btn bg-orange w-100" id="search-modal-btn" role="button" aria-label="Buka pencarian">
-    <i class="bi bi-search"></i>
-</button>
-</li>`).clone(true).appendTo('#menu-page-menu');
-
         const emptyNavMain = document.querySelector('.empty-nav-main');
         if(emptyNavMain)
         {
-            $(`<li class="menu-item-199"><button class="btn bg-orange w-100" id="search-modal-btn" role="button" aria-label="Buka pencarian">
-                <i class="bi bi-search"></i>
-            </button>
-            </li>`).clone(true).appendTo('.empty-nav-main');
+            //
         }
-
-        $('#search-modal-btn').click(function(){
-            $('#search-modal').css('opacity', '1');
-            $('#search-modal').css('pointer-events', 'auto');
-            setTimeout(() => {
-                $('.modals').addClass('modal-active');
-            }, 500)
-        });
-        
     });
-
 
     searchModalButton.forEach((btn) => {
         btn.onclick = () => {
-            document.querySelector('.modals').classList.remove('modal-active')
-            setTimeout(() => {
-                searchModal.style.opacity = searchModal.style.opacity == 1 ? 0 : 1;
-                searchModal.style.pointerEvents = searchModal.style.pointerEvents == 'none' ? 'auto' : 'none';
-            }, 500)
+            if(document.querySelector('.modals').classList.contains('modal-active'))
+            {
+                document.querySelector('.modals').classList.remove('modal-active')
+                setTimeout(() => {
+                    searchModal.style.opacity = 0;
+                    searchModal.style.pointerEvents = 'none';
+                }, 500)
+            }
+            else
+            {
+                searchModal.style.opacity = 1;
+                searchModal.style.pointerEvents = 'auto';
+                document.querySelector('.modals').classList.add('modal-active')
+            }
         }
     });
 
     const cards = document.querySelectorAll('.card-secondary');
-
     cards.forEach((card) => {
         card.addEventListener('mouseenter', () => {
             const image = card.querySelector('.wp-post-image');
@@ -156,7 +121,6 @@
     })
 
     const dropdowns = document.querySelectorAll('.has-sub-menu');
-
     dropdowns.forEach((dropdown, i) => {
         const submenu = dropdown.querySelector('.sub-menu');
         
@@ -179,30 +143,6 @@
         });
     })
 
-    let isOpen = false;
-    document.querySelectorAll('#toggle-sidebar-btn').forEach((item, i) => {
-        item.onclick = () => {
-            if(!isOpen)
-            {
-                const sidebar = document.querySelector('.sidebar-wrapper');
-                sidebar.classList.toggle('active-sidebar');
-                setTimeout(() => {
-                    document.querySelector('.category-menu-sidebar').style.transform = "translate(0px, 0px)";
-                    isOpen = true;
-                }, 400);
-            }
-            else
-            {
-                document.querySelector('.category-menu-sidebar').style.transform = "translate(400px, 0px)";
-                setTimeout(() => {
-                    const sidebar = document.querySelector('.sidebar-wrapper');
-                    sidebar.classList.toggle('active-sidebar');
-                    isOpen = false;
-                }, 300)
-            }
-        }
-    });
-
     if(Boolean(<?php echo is_single() ?>))
     {
         document.querySelectorAll('#copyBtn').forEach(item => {
@@ -214,6 +154,19 @@
                 alert("Link berhasil disalin!")
             }
         })
+    }
+
+    const changeNavbarTheme = () => {
+        if(isDarkMode)
+        {
+            document.querySelector('.navbar').classList.add('navbar-dark');
+            document.querySelector('.navbar').classList.remove('navbar-light');
+        }
+        else
+        {
+            document.querySelector('.navbar').classList.remove('navbar-dark');
+            document.querySelector('.navbar').classList.add('navbar-light');
+        }
     }
 
     const changeMode = () => {
@@ -271,6 +224,8 @@
                 document.getElementById('modeStyle').innerHTML = '';
             }
         }
+        changeNavbarTheme();
+        return;
     }
 
     let isDarkMode = Boolean(JSON.parse(localStorage['isDarkMode'] || 'false'));
@@ -302,6 +257,8 @@
             changeMode()
         }
     }
+
+    window.addEventListener('resize', changeNavbarTheme)
 </script>
 </body>
 

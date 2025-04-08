@@ -1,22 +1,8 @@
-<nav class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange" style="box-shadow: rgba(99,99,99,.2) 0 2px 4px 0;">
-    <style>
-        .scrollbar-nav::-webkit-scrollbar{
-            display: none;
-        }
-    </style>
+<nav class="main-menu py-1 <?= get_theme_mod('is_active_slider', true) && get_theme_mod('is_show_headline', true) ? 'mb-5' : 'mb-3' ?> bg-orange" style="box-shadow: rgba(83, 88, 93, 0.2) 0px 0px 40px;">
     <div class="container scrollbar-nav overflow-x-auto" role="navigation" style="padding: 0 1.5rem !important;">
         <?php
         $menu_id = get_menu_id('main-menu');
         $menu_items = wp_get_nav_menu_items($menu_id);
-
-        // wp_nav_menu(array(
-        //     'theme_location' => 'main-menu',
-        //     'menu_class' => 'navbar-nav d-flex flex-row justify-content-between gap-5',
-        //     'menu_item_class' => 'nav-item active',
-        //     'link_class' => 'text-decoration-none text-white',
-        //     'container' => 'ul'
-        // ));
-        
         if( !empty($menu_items) && is_array($menu_items) ):
         ?>
             <ul class="navbar-nav d-flex flex-row gap-5" style="min-width: max-content;">
@@ -38,7 +24,7 @@
                                 <ul class="sub-menu p-3 bg-white shadow-sm border-4 border-bottom border-success" style="width: max-content;">
                                     <?php  foreach( $child_menu_items as $item ): ?>
                                         <li class="nav-item d-none d-md-block">
-                                            <a class="nav-link active text-decoration-none text-dark fs-6 fw-semibold" aria-current="page" href="<?= esc_url($item->url) ?>" target="<?= esc_attr($item->target) ?>" ><?= esc_html($item->title) ?></a>
+                                            <a class="nav-link active text-decoration-none text-dark fs-6 fw-semibold text" aria-current="page" href="<?= esc_url($item->url) ?>" target="<?= esc_attr($item->target) ?>" ><?= esc_html($item->title) ?></a>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>

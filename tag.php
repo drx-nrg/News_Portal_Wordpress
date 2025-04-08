@@ -11,9 +11,9 @@
                 )
             ); ?>
         <header class="header mb-3" class="page-header">
-            <h1 id="tag-title" class="fs-2 fw-semibold text-dark" itemprop="name"><?= get_the_archive_title() ?></h1>
+            <h1 id="tag-title" class="fs-2 fw-semibold text-dark" itemprop="name"><?php echo single_term_title() ?></h1>
             <?php if (get_the_archive_description()) : ?>
-                <p id="tag-description" itemprop="description"><?= get_the_archive_description(); ?></p>
+                <p id="tag-description" itemprop="description"><?php echo get_the_archive_description(); ?></p>
             <?php endif; ?>
         </header>
 
@@ -37,7 +37,7 @@
                         <div class="d-flex flex-column gap-2 gap-md-3">
                             <div class="main-text d-flex flex-column align-items-center">
                                 <h1 class="fw-semibold fs-1 mt-5 text-dark fw-semibold">404</h1>
-                                <p class="text-secondary">Berita dengan tag <?= trim(explode(':', get_the_archive_title())[1]) ?> tidak ditemukan.</p>
+                                <p class="text-secondary">Berita dengan tag <?php echo trim(explode(':', get_the_archive_title())[1]) ?> tidak ditemukan.</p>
                             </div>
                             <?php get_search_form(['is_white' => true]) ?>
                         </div>

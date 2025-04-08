@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 
@@ -31,6 +31,31 @@
         display: flex !important;
         transition: all .5s ease;
     }
+    <?php if(is_single()): ?>
+    @media screen and (max-width: 1200px){
+        #breadcrumb{
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            pointer-events: none;
+        }
+    }
+    <?php endif; ?>
+    @media screen and (min-width: 992px) {
+        .headline-swiper-slide-item{
+            max-height: 400px;
+        }
+    }
+    @media screen and (max-width: 992px) {
+        .headline-swiper-slide-item{
+            max-height: 300px;
+        }
+    }
+    @media screen and (max-width: 576px) {
+        .headline-swiper-slide-item{
+            max-height: 250px;
+        }
+    }
 </style>
 
 <body <?php body_class('bg-light'); ?>>
@@ -50,5 +75,5 @@
             </div>
         </div>
         <button id="backToTopBtn" aria-label="Gulir Ke Atas" title="Gulir Ke Atas" class="btn bg-orange rounded-circle shadow-lg" style="position: fixed; right: 2rem; bottom: 0rem; z-index: 999; opacity: 0; transition: all .3s ease-in-out;">
-            <i class="bi bi-chevron-double-up text-white fs-4"></i>
+            <i class="bi bi-chevron-double-up fs-4"></i>
         </button>

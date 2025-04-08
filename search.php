@@ -5,13 +5,15 @@
             <div class="row">
                 <div class="col-md-8">
                     <section id="posts-found">
-                        <header class="header mb-3">
-                            <h1 class="entry-title fs-5 fs-lg-4 fw-normal text-dark" itemprop="name">Hasil Pencarian Untuk : <span class="fw-semibold"><?= get_search_query() ?></span></h1>
-                            <meta itemprop="description" content="Menampilkan hasil pencarian untuk kata kunci '<?php echo get_search_query(); ?>'">
-                        </header>
-                        <?php while (have_posts()) : the_post(); ?>
-                            <?php get_post_type() == "post" ? get_template_part('entry', 'summary') : null ?>
-                        <?php endwhile; ?>
+                        <h1 class="entry-title fs-5 fs-lg-4 fw-normal text-dark" itemprop="name">Hasil Pencarian Untuk : <span class="fw-semibold"><?= get_search_query() ?></span></h1>
+                        <meta itemprop="description" content="Menampilkan hasil pencarian untuk kata kunci '<?php echo get_search_query(); ?>'">
+                        <div class="row">
+                            <div class="col-12">
+                                <?php while (have_posts()) : the_post(); ?>
+                                    <?php get_post_type() == "post" ? get_template_part('entry', 'summary') : null ?>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
                     </section>
                     <!-- Navigasi Halaman -->
                     <nav class="pagination" aria-label="Navigasi Halaman">
